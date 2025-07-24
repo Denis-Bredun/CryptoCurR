@@ -70,6 +70,7 @@ namespace CryptoCurR.Services
                 var content = await response.Content.ReadAsStringAsync();
                 var message = string.Format(
                     ExceptionMessages.HttpRequestFailedTemplate,
+                    (int)response.StatusCode,
                     response.StatusCode,
                     content);
 
