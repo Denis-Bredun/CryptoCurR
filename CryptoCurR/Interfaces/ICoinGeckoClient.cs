@@ -9,11 +9,17 @@ namespace CryptoCurR.Interfaces
 {
     public interface ICoinGeckoClient
     {
-        Task<string> GetTopCoinsJsonAsync(int perPage, int page);
+        Task<string> GetTopCoinsJsonAsync(
+            int perPage = DefaultArguments.CoinsMarketsPerPage,
+            int page = DefaultArguments.CoinsMarketsDefaultPage);
         Task<string> GetCoinDetailsJsonAsync(string id);
         Task<string> GetSearchJsonAsync(string query);
-        Task<string> GetMarketChartJsonAsync(string id, int days);
-        Task<string> GetOhlcJsonAsync(string id, int days);        
+        Task<string> GetMarketChartJsonAsync(
+            string id, 
+            int days = DefaultArguments.DefaultPeriodInDays);
+        Task<string> GetOhlcJsonAsync(
+            string id, 
+            int days = DefaultArguments.DefaultPeriodInDays);        
         Task<string> GetTickersJsonAsync(string id);        
     }
 }

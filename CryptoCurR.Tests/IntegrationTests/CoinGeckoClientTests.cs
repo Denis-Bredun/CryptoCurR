@@ -1,4 +1,5 @@
-﻿using CryptoCurR.Services;
+﻿using CryptoCurR.Interfaces;
+using CryptoCurR.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,7 @@ namespace CryptoCurR.Tests.IntegrationTests
 {
     public class CoinGeckoClientTests
     {
-        private readonly CoinGeckoClient _client;
-
-        private const string ValidCoinId = "bitcoin";
-        private const string ValidSearchQuery = "eth";
-        private const string InvalidCoinId = "invalid_coin_id";
-        private const string AnotherInvalidCoinId = "some_invalid_id";
-        private const string EmptyCoinId = "";
+        private readonly ICoinGeckoClient _client;
 
         public CoinGeckoClientTests()
         {
@@ -36,35 +31,35 @@ namespace CryptoCurR.Tests.IntegrationTests
         [Fact]
         public async Task GetCoinDetailsJsonAsync_Should_Succeed_For_ValidId()
         {
-            var result = await _client.GetCoinDetailsJsonAsync(ValidCoinId);
+            var result = await _client.GetCoinDetailsJsonAsync(TestConstants.ValidCoinId);
             Assert.False(string.IsNullOrWhiteSpace(result));
         }
 
         [Fact]
         public async Task GetSearchJsonAsync_Should_Succeed_For_ValidQuery()
         {
-            var result = await _client.GetSearchJsonAsync(ValidSearchQuery);
+            var result = await _client.GetSearchJsonAsync(TestConstants.ValidSearchQuery);
             Assert.False(string.IsNullOrWhiteSpace(result));
         }
 
         [Fact]
         public async Task GetMarketChartJsonAsync_Should_Succeed_For_ValidId()
         {
-            var result = await _client.GetMarketChartJsonAsync(ValidCoinId);
+            var result = await _client.GetMarketChartJsonAsync(TestConstants.ValidCoinId);
             Assert.False(string.IsNullOrWhiteSpace(result));
         }
 
         [Fact]
         public async Task GetOhlcJsonAsync_Should_Succeed_For_ValidId()
         {
-            var result = await _client.GetOhlcJsonAsync(ValidCoinId);
+            var result = await _client.GetOhlcJsonAsync(TestConstants.ValidCoinId);
             Assert.False(string.IsNullOrWhiteSpace(result));
         }
 
         [Fact]
         public async Task GetTickersJsonAsync_Should_Succeed_For_ValidId()
         {
-            var result = await _client.GetTickersJsonAsync(ValidCoinId);
+            var result = await _client.GetTickersJsonAsync(TestConstants.ValidCoinId);
             Assert.False(string.IsNullOrWhiteSpace(result));
         }
 
@@ -73,7 +68,7 @@ namespace CryptoCurR.Tests.IntegrationTests
         {
             await Assert.ThrowsAsync<HttpRequestException>(async () =>
             {
-                await _client.GetCoinDetailsJsonAsync(InvalidCoinId);
+                await _client.GetCoinDetailsJsonAsync(TestConstants.InvalidCoinId);
             });
         }
 
@@ -82,7 +77,7 @@ namespace CryptoCurR.Tests.IntegrationTests
         {
             await Assert.ThrowsAsync<HttpRequestException>(async () =>
             {
-                await _client.GetMarketChartJsonAsync(AnotherInvalidCoinId);
+                await _client.GetMarketChartJsonAsync(TestConstants.AnotherInvalidCoinId);
             });
         }
 
@@ -91,7 +86,7 @@ namespace CryptoCurR.Tests.IntegrationTests
         {
             await Assert.ThrowsAsync<HttpRequestException>(async () =>
             {
-                await _client.GetOhlcJsonAsync(AnotherInvalidCoinId);
+                await _client.GetOhlcJsonAsync(TestConstants.AnotherInvalidCoinId);
             });
         }
 
@@ -100,7 +95,7 @@ namespace CryptoCurR.Tests.IntegrationTests
         {
             await Assert.ThrowsAsync<HttpRequestException>(async () =>
             {
-                await _client.GetTickersJsonAsync(EmptyCoinId);
+                await _client.GetTickersJsonAsync(TestConstants.EmptyCoinId);
             });
         }
     }
