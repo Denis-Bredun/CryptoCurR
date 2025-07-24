@@ -23,6 +23,9 @@ namespace CryptoCurR.Tests.IntegrationTests
             _client = new CoinGeckoClient(httpClient);
         }
 
+        // If you run all of the tests at the same time, some of them will probably fail because of 429: TooManyRequests.
+        // If it happens, just run failed tests in like 2 minutes. It seems like the CoinGenkoAPI just requires some delay in requests
+
         [Fact]
         public async Task GetTopCoinsJsonAsync_Should_Succeed()
         {
