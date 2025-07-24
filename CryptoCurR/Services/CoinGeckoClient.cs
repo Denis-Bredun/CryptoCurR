@@ -9,8 +9,16 @@ using System.Threading.Tasks;
 
 namespace CryptoCurR.Services
 {
-    public class CoinGeckoClient(HttpClient httpClient) : ICoinGeckoClient
+    public class CoinGeckoClient : ICoinGeckoClient
     {
+        private readonly HttpClient _httpClient;
+
+        public CoinGeckoClient(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (compatible; CoinApp/1.0)");
+        }
+
         public async Task<string> GetTopCoinsJsonAsync(
             int perPage = DefaultArguments.CoinsMarketsPerPage,
             int page = DefaultArguments.CoinsMarketsDefaultPage)
@@ -55,7 +63,7 @@ namespace CryptoCurR.Services
 
         private async Task<string> SendAndCheckGetRequestAsync(string url)
         {
-            var response = await httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
             {
