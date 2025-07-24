@@ -22,7 +22,10 @@ namespace CryptoCurR.Constants
 
         public const string TickersEndpoint = "/coins/{0}/tickers";
 
-        public static string GetMarketsUrl(string vsCurrency = "usd", int perPage = 10, int page = 1)
+        public static string GetMarketsUrl(
+            string vsCurrency = DefaultArguments.VsCurrency, 
+            int perPage = DefaultArguments.CoinsMarketsPerPage, 
+            int page = DefaultArguments.CoinsMarketsDefaultPage)
         {
             return $"{BaseUrl}{CoinsMarketsEndpoint}?vs_currency={vsCurrency}&order=market_cap_desc&per_page={perPage}&page={page}";
         }
@@ -37,12 +40,18 @@ namespace CryptoCurR.Constants
             return string.Format($"{BaseUrl}{SearchEndpoint}", Uri.EscapeDataString(query));
         }
 
-        public static string GetMarketChartUrl(string id, int days = 7, string vsCurrency = "usd")
+        public static string GetMarketChartUrl(
+            string id, 
+            int days = DefaultArguments.DefaultPeriodInDays, 
+            string vsCurrency = DefaultArguments.VsCurrency)
         {
             return string.Format($"{BaseUrl}{MarketChartEndpoint}?vs_currency={vsCurrency}&days={days}", id);
         }
 
-        public static string GetOhlcUrl(string id, int days = 7, string vsCurrency = "usd")
+        public static string GetOhlcUrl(
+            string id, 
+            int days = DefaultArguments.DefaultPeriodInDays, 
+            string vsCurrency = DefaultArguments.VsCurrency)
         {
             return string.Format($"{BaseUrl}{OhlcEndpoint}?vs_currency={vsCurrency}&days={days}", id);
         }
