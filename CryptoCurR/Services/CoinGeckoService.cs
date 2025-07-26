@@ -11,7 +11,10 @@ using System.Threading.Tasks;
 
 namespace CryptoCurR.Services
 {
-    public class CoinGeckoService(ICoinGeckoClient client, ICoinGeckoParser parser) : ICoinGeckoService
+    public class CoinGeckoService(
+        ICoinGeckoClient client, 
+        ICoinGeckoParser parser,
+        INetworkCheckService networkCheckService) : ICoinGeckoService
     {
         public async Task<List<CoinMarketModel>?> GetTopCoinsAsync(
             int perPage = DefaultArguments.CoinsMarketsPerPage,

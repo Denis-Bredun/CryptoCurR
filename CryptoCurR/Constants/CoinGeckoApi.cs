@@ -8,7 +8,9 @@ namespace CryptoCurR.Constants
 {
     public static class CoinGeckoApi
     {
-        public const string BaseUrl = "https://api.coingecko.com/api/v3";
+        public const string BaseSiteUrl = "https://api.coingecko.com/";
+
+        public const string BaseAPIUrl = "https://api.coingecko.com/api/v3";
 
         public const string CoinsMarketsEndpoint = "/coins/markets";
 
@@ -27,17 +29,17 @@ namespace CryptoCurR.Constants
             int perPage = DefaultArguments.CoinsMarketsPerPage, 
             int page = DefaultArguments.CoinsMarketsDefaultPage)
         {
-            return $"{BaseUrl}{CoinsMarketsEndpoint}?vs_currency={vsCurrency}&order=market_cap_desc&per_page={perPage}&page={page}";
+            return $"{BaseAPIUrl}{CoinsMarketsEndpoint}?vs_currency={vsCurrency}&order=market_cap_desc&per_page={perPage}&page={page}";
         }
 
         public static string GetCoinUrl(string id)
         {
-            return string.Format($"{BaseUrl}{CoinByIdEndpoint}", id);
+            return string.Format($"{BaseAPIUrl}{CoinByIdEndpoint}", id);
         }
 
         public static string GetSearchUrl(string query)
         {
-            return string.Format($"{BaseUrl}{SearchEndpoint}", Uri.EscapeDataString(query));
+            return string.Format($"{BaseAPIUrl}{SearchEndpoint}", Uri.EscapeDataString(query));
         }
 
         public static string GetMarketChartUrl(
@@ -45,7 +47,7 @@ namespace CryptoCurR.Constants
             int days = DefaultArguments.DefaultPeriodInDays, 
             string vsCurrency = DefaultArguments.VsCurrency)
         {
-            return string.Format($"{BaseUrl}{MarketChartEndpoint}?vs_currency={vsCurrency}&days={days}", id);
+            return string.Format($"{BaseAPIUrl}{MarketChartEndpoint}?vs_currency={vsCurrency}&days={days}", id);
         }
 
         public static string GetOhlcUrl(
@@ -53,12 +55,12 @@ namespace CryptoCurR.Constants
             int days = DefaultArguments.DefaultPeriodInDays, 
             string vsCurrency = DefaultArguments.VsCurrency)
         {
-            return string.Format($"{BaseUrl}{OhlcEndpoint}?vs_currency={vsCurrency}&days={days}", id);
+            return string.Format($"{BaseAPIUrl}{OhlcEndpoint}?vs_currency={vsCurrency}&days={days}", id);
         }
 
         public static string GetTickersUrl(string id)
         {
-            return string.Format($"{BaseUrl}{TickersEndpoint}", id);
+            return string.Format($"{BaseAPIUrl}{TickersEndpoint}", id);
         }
     }
 }
