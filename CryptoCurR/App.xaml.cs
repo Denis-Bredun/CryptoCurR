@@ -62,6 +62,7 @@ namespace CryptoCurR
             services.AddScoped<ICoinGeckoClient, CoinGeckoClient>();
             services.AddScoped<ICoinGeckoParser, CoinGeckoParser>();
             services.AddScoped<INetworkCheckService, NetworkCheckService>();
+            services.AddScoped<IErrorHandler, ErrorHandler>();
             services.AddScoped<ICoinGeckoService, CoinGeckoService>();
 
             services.AddSingleton(CreateNotifier);

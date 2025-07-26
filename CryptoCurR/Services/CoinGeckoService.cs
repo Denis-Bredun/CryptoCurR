@@ -15,201 +15,104 @@ using ToastNotifications.Messages;
 namespace CryptoCurR.Services
 {
     public class CoinGeckoService(
-        ICoinGeckoClient client, 
-        ICoinGeckoParser parser,
-        INetworkCheckService networkCheckService,
-        Notifier notifier) : ICoinGeckoService
-    {
-        public async Task<List<CoinMarketModel>?> GetTopCoinsAsync(
-    int perPage = DefaultArguments.CoinsMarketsPerPage,
-    int page = DefaultArguments.CoinsMarketsDefaultPage)
+            ICoinGeckoClient client,
+            ICoinGeckoParser parser,
+            INetworkCheckService networkCheckService,
+            IErrorHandler errorHandler) : ICoinGeckoService
+    {      
+        public Task<List<CoinMarketModel>?> GetTopCoinsAsync(int perPage = DefaultArguments.CoinsMarketsPerPage, int page = DefaultArguments.CoinsMarketsDefaultPage)
         {
-            const string context = "getting top coins";
-
-            if (!await networkCheckService.IsInternetAvailableAsync())
-            {
-                Log.Warning(LogMessages.NetworkUnavailable, context);
-                notifier.ShowWarning(Notifications.NetworkErrorNotification);
-                return null;
-            }
-
-            try
-            {
-                var json = await client.GetTopCoinsJsonAsync(perPage, page);
-                return parser.ParseTopCoins(json);
-            }
-            catch (HttpRequestException ex)
-            {
-                Log.Error(ex, LogMessages.HttpError, context);
-                notifier.ShowError(string.Format(Notifications.HttpErrorNotification, context));
-                return null;
-            }
-            catch (JsonException ex)
-            {
-                Log.Error(ex, LogMessages.JsonError, context);
-                notifier.ShowError(string.Format(Notifications.JsonErrorNotification, context));
-                return null;
-            }
+            string context = "getting top coins";
+            return ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetTopCoinsJsonAsync(perPage, page);
+                    return parser.ParseTopCoins(json);
+                }, context);
         }
 
-        public async Task<CoinDetailModel?> GetCoinDetailsAsync(string id)
+        public Task<CoinDetailModel?> GetCoinDetailsAsync(string id)
         {
             string context = $"getting coin details for '{id}'";
-
-            if (!await networkCheckService.IsInternetAvailableAsync())
-            {
-                Log.Warning(LogMessages.NetworkUnavailable, context);
-                notifier.ShowWarning(Notifications.NetworkErrorNotification);
-                return null;
-            }
-
-            try
-            {
-                var json = await client.GetCoinDetailsJsonAsync(id);
-                return parser.ParseCoinDetails(json);
-            }
-            catch (HttpRequestException ex)
-            {
-                Log.Error(ex, LogMessages.HttpError, context);
-                notifier.ShowError(string.Format(Notifications.HttpErrorNotification, context));
-                return null;
-            }
-            catch (JsonException ex)
-            {
-                Log.Error(ex, LogMessages.JsonError, context);
-                notifier.ShowError(string.Format(Notifications.JsonErrorNotification, context));
-                return null;
-            }
+            return ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetCoinDetailsJsonAsync(id);
+                    return parser.ParseCoinDetails(json);
+                }, context);
         }
 
-        public async Task<CoinSearchResult?> SearchCoinsAsync(string query)
+        public Task<CoinSearchResult?> SearchCoinsAsync(string query)
         {
             string context = $"searching coins for query '{query}'";
-
-            if (!await networkCheckService.IsInternetAvailableAsync())
-            {
-                Log.Warning(LogMessages.NetworkUnavailable, context);
-                notifier.ShowWarning(Notifications.NetworkErrorNotification);
-                return null;
-            }
-
-            try
-            {
-                var json = await client.GetSearchJsonAsync(query);
-                return parser.ParseSearchResult(json);
-            }
-            catch (HttpRequestException ex)
-            {
-                Log.Error(ex, LogMessages.HttpError, context);
-                notifier.ShowError(string.Format(Notifications.HttpErrorNotification, context));
-                return null;
-            }
-            catch (JsonException ex)
-            {
-                Log.Error(ex, LogMessages.JsonError, context);
-                notifier.ShowError(string.Format(Notifications.JsonErrorNotification, context));
-                return null;
-            }
+            return ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetSearchJsonAsync(query);
+                    return parser.ParseSearchResult(json);
+                }, context);
         }
 
-
-        public async Task<MarketChartData?> GetMarketChartAsync(string id, int days = DefaultArguments.DefaultPeriodInDays)
+        public Task<MarketChartData?> GetMarketChartAsync(string id, int days = DefaultArguments.DefaultPeriodInDays)
         {
             string context = $"loading market chart for '{id}'";
-
-            if (!await networkCheckService.IsInternetAvailableAsync())
-            {
-                Log.Warning(LogMessages.NetworkUnavailable, context);
-                notifier.ShowWarning(Notifications.NetworkErrorNotification);
-                return null;
-            }
-
-            try
-            {
-                var json = await client.GetMarketChartJsonAsync(id, days);
-                return parser.ParseMarketChart(json);
-            }
-            catch (HttpRequestException ex)
-            {
-                Log.Error(ex, LogMessages.HttpError, context);
-                notifier.ShowError(string.Format(Notifications.HttpErrorNotification, context));
-                return null;
-            }
-            catch (JsonException ex)
-            {
-                Log.Error(ex, LogMessages.JsonError, context);
-                notifier.ShowError(string.Format(Notifications.JsonErrorNotification, context));
-                return null;
-            }
+            return ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetMarketChartJsonAsync(id, days);
+                    return parser.ParseMarketChart(json);
+                }, context);
         }
 
-        public async Task<List<OhlcCandle>?> GetOhlcAsync(
-            string id,
-            int days = DefaultArguments.DefaultPeriodInDays)
+        public Task<List<OhlcCandle>?> GetOhlcAsync(string id, int days = DefaultArguments.DefaultPeriodInDays)
         {
             string context = $"loading OHLC data for '{id}'";
-
-            if (!await networkCheckService.IsInternetAvailableAsync())
-            {
-                Log.Warning(LogMessages.NetworkUnavailable, context);
-                notifier.ShowWarning(Notifications.NetworkErrorNotification);
-                return null;
-            }
-
-            try
-            {
-                var json = await client.GetOhlcJsonAsync(id, days);
-                return parser.ParseOhlc(json);
-            }
-            catch (HttpRequestException ex)
-            {
-                Log.Error(ex, LogMessages.HttpError, context);
-                notifier.ShowError(string.Format(Notifications.HttpErrorNotification, context));
-                return null;
-            }
-            catch (JsonException ex)
-            {
-                Log.Error(ex, LogMessages.JsonError, context);
-                notifier.ShowError(string.Format(Notifications.JsonErrorNotification, context));
-                return null;
-            }
-            catch (Exception ex) when (
-                ex is OverflowException or
-                IndexOutOfRangeException or
-                ArgumentOutOfRangeException)
-            {
-                Log.Error(ex, LogMessages.OhlcParsingError, id);
-                notifier.ShowError(Notifications.OhlcParsingErrorNotification);
-                return null;
-            }
+            return ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetOhlcJsonAsync(id, days);
+                    return parser.ParseOhlc(json);
+                }, context);
         }
 
-        public async Task<CoinTickersResponse?> GetTickersAsync(string id)
+        public Task<CoinTickersResponse?> GetTickersAsync(string id)
         {
             string context = $"loading tickers for '{id}'";
+            return ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetTickersJsonAsync(id);
+                    return parser.ParseTickers(json);
+                }, context);
+        }
 
+        private async Task<T?> ExecuteWithHandlingAsync<T>(Func<Task<T?>> action, string context, Func<Exception, string>? getErrorNotification = null)
+            where T : class
+        {
             if (!await networkCheckService.IsInternetAvailableAsync())
             {
-                Log.Warning(LogMessages.NetworkUnavailable, context);
-                notifier.ShowWarning(Notifications.NetworkErrorNotification);
+                errorHandler.HandleWarning(LogMessages.NetworkUnavailable, context, Notifications.NetworkErrorNotification);
                 return null;
             }
 
             try
             {
-                var json = await client.GetTickersJsonAsync(id);
-                return parser.ParseTickers(json);
+                return await action();
             }
             catch (HttpRequestException ex)
             {
-                Log.Error(ex, LogMessages.HttpError, context);
-                notifier.ShowError(string.Format(Notifications.HttpErrorNotification, context));
+                errorHandler.HandleError(ex, LogMessages.HttpError, context, string.Format(Notifications.HttpErrorNotification, context));
                 return null;
             }
             catch (JsonException ex)
             {
-                Log.Error(ex, LogMessages.JsonError, context);
-                notifier.ShowError(string.Format(Notifications.JsonErrorNotification, context));
+                errorHandler.HandleError(ex, LogMessages.JsonError, context, string.Format(Notifications.JsonErrorNotification, context));
+                return null;
+            }
+            catch (Exception ex) when (typeof(T) == typeof(List<OhlcCandle>) &&
+                                       (ex is OverflowException or IndexOutOfRangeException or ArgumentOutOfRangeException))
+            {
+                errorHandler.HandleError(ex, LogMessages.OhlcParsingError, context, Notifications.OhlcParsingErrorNotification);
                 return null;
             }
         }
