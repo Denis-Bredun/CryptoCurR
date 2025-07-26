@@ -10,12 +10,18 @@ using System.Threading.Tasks;
 
 namespace CryptoCurR.Tests
 {
-    public class CoinGeckoServiceMock(ICoinGeckoClient client, ICoinGeckoParser parser) : ICoinGeckoService
+    public class CoinGeckoServiceMock(
+        ICoinGeckoClient client, 
+        ICoinGeckoParser parser,
+        INetworkCheckService networkCheckService) : ICoinGeckoService
     {
         public async Task<List<CoinMarketModel>?> GetTopCoinsAsync(
             int perPage = DefaultArguments.CoinsMarketsPerPage,
             int page = DefaultArguments.CoinsMarketsDefaultPage)
         {
+            if (!await networkCheckService.IsInternetAvailableAsync())
+                return null;
+
             try
             {
                 var json = await client.GetTopCoinsJsonAsync(perPage, page);
@@ -33,6 +39,9 @@ namespace CryptoCurR.Tests
 
         public async Task<CoinDetailModel?> GetCoinDetailsAsync(string id)
         {
+            if (!await networkCheckService.IsInternetAvailableAsync())
+                return null;
+
             try
             {
                 var json = await client.GetCoinDetailsJsonAsync(id);
@@ -50,6 +59,9 @@ namespace CryptoCurR.Tests
 
         public async Task<CoinSearchResult?> SearchCoinsAsync(string query)
         {
+            if (!await networkCheckService.IsInternetAvailableAsync())
+                return null;
+
             try
             {
                 var json = await client.GetSearchJsonAsync(query);
@@ -69,6 +81,9 @@ namespace CryptoCurR.Tests
             string id,
             int days = DefaultArguments.DefaultPeriodInDays)
         {
+            if (!await networkCheckService.IsInternetAvailableAsync())
+                return null;
+
             try
             {
                 var json = await client.GetMarketChartJsonAsync(id, days);
@@ -88,6 +103,9 @@ namespace CryptoCurR.Tests
             string id,
             int days = DefaultArguments.DefaultPeriodInDays)
         {
+            if (!await networkCheckService.IsInternetAvailableAsync())
+                return null;
+
             try
             {
                 var json = await client.GetOhlcJsonAsync(id, days);
@@ -112,6 +130,9 @@ namespace CryptoCurR.Tests
 
         public async Task<CoinTickersResponse?> GetTickersAsync(string id)
         {
+            if (!await networkCheckService.IsInternetAvailableAsync())
+                return null;
+
             try
             {
                 var json = await client.GetTickersJsonAsync(id);
