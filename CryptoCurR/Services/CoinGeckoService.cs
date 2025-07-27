@@ -101,7 +101,11 @@ namespace CryptoCurR.Services
             }
             catch (HttpRequestException ex)
             {
-                errorHandler.HandleError(ex, LogMessages.HttpError, context, string.Format(Notifications.HttpErrorNotification, context));
+                var message = ex.Message.Contains("429") ? 
+                    Notifications.ExceededRateLimitErrorNotification : 
+                    Notifications.HttpErrorNotification;
+
+                errorHandler.HandleError(ex, LogMessages.HttpError, context, string.Format(message, context));
                 return null;
             }
             catch (JsonException ex)

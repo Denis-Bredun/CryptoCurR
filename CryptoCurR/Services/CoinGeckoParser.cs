@@ -1,44 +1,48 @@
 ﻿using CryptoCurR.Interfaces;
 using CryptoCurR.Models;
-using System.Text.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace CryptoCurR.Services
 {
     public class CoinGeckoParser : ICoinGeckoParser
     {
-        private static readonly JsonSerializerOptions _options = new()
+        private static readonly JsonSerializerSettings _settings = new()
         {
-            PropertyNameCaseInsensitive = true
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            }
         };
 
         public List<CoinMarketModel>? ParseTopCoins(string json)
         {
-            return JsonSerializer.Deserialize<List<CoinMarketModel>>(json, _options);
+            return JsonConvert.DeserializeObject<List<CoinMarketModel>>(json, _settings);
         }
 
         public CoinDetailModel? ParseCoinDetails(string json)
         {
-            return JsonSerializer.Deserialize<CoinDetailModel>(json, _options);
+            return JsonConvert.DeserializeObject<CoinDetailModel>(json, _settings);
         }
 
         public CoinSearchResult? ParseSearchResult(string json)
         {
-            return JsonSerializer.Deserialize<CoinSearchResult>(json, _options);
+            return JsonConvert.DeserializeObject<CoinSearchResult>(json, _settings);
         }
 
         public MarketChartData? ParseMarketChart(string json)
         {
-            return JsonSerializer.Deserialize<MarketChartData>(json, _options);
+            return JsonConvert.DeserializeObject<MarketChartData>(json, _settings);
         }
 
         public CoinTickersResponse? ParseTickers(string json)
         {
-            return JsonSerializer.Deserialize<CoinTickersResponse>(json, _options);
+            return JsonConvert.DeserializeObject<CoinTickersResponse>(json, _settings);
         }
 
         public List<OhlcCandle>? ParseOhlc(string json)
         {
-            var rawCandles = JsonSerializer.Deserialize<List<List<decimal>>>(json, _options);
+            var rawCandles = JsonConvert.DeserializeObject<List<List<decimal>>>(json, _settings);
 
             return rawCandles?
                 .Select(c => new OhlcCandle

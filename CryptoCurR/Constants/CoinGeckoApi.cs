@@ -8,7 +8,7 @@ namespace CryptoCurR.Constants
 {
     public static class CoinGeckoApi
     {
-        public const string BaseSiteUrl = "https://api.coingecko.com/";
+        public const string BaseSiteUrl = "https://docs.coingecko.com/";
 
         public const string BaseAPIUrl = "https://api.coingecko.com/api/v3";
 

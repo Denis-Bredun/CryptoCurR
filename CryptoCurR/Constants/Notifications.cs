@@ -19,5 +19,8 @@ namespace CryptoCurR.Constants
 
         public const string OhlcParsingErrorNotification =
             "Something went wrong while parsing OHLC data.";
+
+        public const string ExceededRateLimitErrorNotification =
+            "You make requests too often.\nYou've exceeded the Rate Limit.";
     }
 }

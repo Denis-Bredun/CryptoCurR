@@ -1,5 +1,7 @@
 ﻿using CryptoCurR.Interfaces;
 using CryptoCurR.Services;
+using CryptoCurR.ViewModels;
+using CryptoCurR.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -23,7 +25,15 @@ namespace CryptoCurR
             _host = CreateHostBuilder().Build();
             Services = _host.Services;
 
+            ShowMainWindow();
+
             base.OnStartup(e);
+        }
+
+        private void ShowMainWindow()
+        {
+            var mainWindow = Services.GetRequiredService<MainPage>();
+            mainWindow.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -55,8 +65,6 @@ namespace CryptoCurR
 
         private void RegisterServices(IServiceCollection services)
         {
-            services.AddSingleton<MainWindow>();
-
             services.AddHttpClient();
 
             services.AddScoped<ICoinGeckoClient, CoinGeckoClient>();
@@ -64,8 +72,11 @@ namespace CryptoCurR
             services.AddScoped<INetworkCheckService, NetworkCheckService>();
             services.AddScoped<IErrorHandler, ErrorHandler>();
             services.AddScoped<ICoinGeckoService, CoinGeckoService>();
+            services.AddScoped<ICryptoListService, CryptoListService>();
 
             services.AddSingleton(CreateNotifier);
+            services.AddSingleton<MainPage>();
+            services.AddSingleton<MainPageViewModel>();
         }
 
         private Notifier CreateNotifier(IServiceProvider provider)
