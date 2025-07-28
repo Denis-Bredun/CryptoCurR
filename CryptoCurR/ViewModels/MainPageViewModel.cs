@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CryptoCurR.Constants;
 using CryptoCurR.Interfaces;
 using CryptoCurR.Models;
 using System;
@@ -28,10 +29,10 @@ namespace CryptoCurR.ViewModels
         private bool _isLoading;
 
         [ObservableProperty]
-        private int _currentPage = 1;
+        private int _currentPage = DefaultArguments.CoinsMarketsDefaultPage;
 
         [ObservableProperty]
-        private int _coinsPerPage = 10;
+        private int _coinsPerPage = DefaultArguments.CoinsMarketsPerPage;
 
         public async Task LoadTopCoinsAsync()
         {

@@ -12,5 +12,6 @@ namespace CryptoCurR.Constants
         public const int CoinsMarketsPerPage = 10;
         public const int CoinsMarketsDefaultPage = 1;
         public const int DefaultPeriodInDays = 7;
+        public static List<int> AvailableTimeframes { get; } = new() { 1, 7, 30 };
     }
 }

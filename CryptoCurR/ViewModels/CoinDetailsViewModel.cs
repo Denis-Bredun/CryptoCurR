@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CryptoCurR.Constants;
 using CryptoCurR.Interfaces;
 using CryptoCurR.Models;
 using System;
@@ -31,9 +32,9 @@ namespace CryptoCurR.ViewModels
         private bool _isLoading;
 
         [ObservableProperty]
-        private int _selectedTimeframe = 7;
+        private int _selectedTimeframe = DefaultArguments.DefaultPeriodInDays;
 
-        public List<int> AvailableTimeframes { get; } = new List<int> { 1, 7, 30 };
+        public List<int> AvailableTimeframes { get; } = DefaultArguments.AvailableTimeframes;
 
         public async Task InitializeAsync(string coinId)
         {
