@@ -173,10 +173,10 @@
 
                             <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
                                 <TextBlock.Text>
-                                    <Binding Path="price_change_percentage_24h" StringFormat="{}{0:F2}%"/>
+                                      <Binding Path="PriceChangePercentage24h" StringFormat="{}{0:F2}%"/>
                                 </TextBlock.Text>
                                 <TextBlock.Foreground>
-                                    <Binding Path="price_change_percentage_24h" Converter="{StaticResource PriceChangeToBrushConverter}"/>
+                                      <Binding Path="PriceChangePercentage24h" Converter="{StaticResource PriceChangeToBrushConverter}"/>
                                 </TextBlock.Foreground>
                             </TextBlock>
 

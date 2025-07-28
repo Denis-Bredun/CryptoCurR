@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,29 +83,76 @@ namespace CryptoCurR.Models
         public Fully_Diluted_Valuation? FullyDilutedValuation { get; set; }
         public decimal? MarketCapFdvRatio { get; set; }
         public Total_Volume? TotalVolume { get; set; }
+
+        [JsonProperty("high_24h")]
         public High_24H? High24h { get; set; }
+
+        [JsonProperty("low_24h")]
         public Low_24H? Low24h { get; set; }
+
+        [JsonProperty("price_change_24h")]
         public decimal? PriceChange24h { get; set; }
+
+        [JsonProperty("price_change_percentage_24h")]
         public decimal? PriceChangePercentage24h { get; set; }
+
+        [JsonProperty("price_change_percentage_7d")]
         public decimal? PriceChangePercentage7d { get; set; }
+
+        [JsonProperty("price_change_percentage_14d")]
         public decimal? PriceChangePercentage14d { get; set; }
+
+        [JsonProperty("price_change_percentage_30d")]
         public decimal? PriceChangePercentage30d { get; set; }
+
+        [JsonProperty("price_change_percentage_60d")]
         public decimal? PriceChangePercentage60d { get; set; }
+
+        [JsonProperty("price_change_percentage_200d")]
         public decimal? PriceChangePercentage200d { get; set; }
+
+        [JsonProperty("price_change_percentage_1y")]
         public decimal? PriceChangePercentage1y { get; set; }
+
+        [JsonProperty("market_cap_change_24h")]
         public decimal? MarketCapChange24h { get; set; }
+
+        [JsonProperty("market_cap_change_percentage_24h")]
         public decimal? MarketCapChangePercentage24h { get; set; }
+
+        [JsonProperty("price_change_24h_in_currency")]
         public Price_Change_24H_In_Currency? PriceChange24hInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_1h_in_currency")]
         public Price_Change_Percentage_1H_In_Currency? PriceChangePercentage1hInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_24h_in_currency")]
         public Price_Change_Percentage_24H_In_Currency? PriceChangePercentage24hInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_7d_in_currency")]
         public Price_Change_Percentage_7D_In_Currency? PriceChangePercentage7dInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_14d_in_currency")]
         public Price_Change_Percentage_14D_In_Currency? PriceChangePercentage14dInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_30d_in_currency")]
         public Price_Change_Percentage_30D_In_Currency? PriceChangePercentage30dInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_60d_in_currency")]
         public Price_Change_Percentage_60D_In_Currency? PriceChangePercentage60dInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_200d_in_currency")]
         public Price_Change_Percentage_200D_In_Currency? PriceChangePercentage200dInCurrency { get; set; }
+
+        [JsonProperty("price_change_percentage_1y_in_currency")]
         public Price_Change_Percentage_1Y_In_Currency? PriceChangePercentage1yInCurrency { get; set; }
+
+        [JsonProperty("market_cap_change_24h_in_currency")]
         public Market_Cap_Change_24H_In_Currency? MarketCapChange24hInCurrency { get; set; }
+
+        [JsonProperty("market_cap_change_percentage_24h_in_currency")]
         public Market_Cap_Change_Percentage_24H_In_Currency? MarketCapChangePercentage24hInCurrency { get; set; }
+
         public decimal? TotalSupply { get; set; }
         public decimal? MaxSupply { get; set; }
         public bool? MaxSupplyInfinite { get; set; }
