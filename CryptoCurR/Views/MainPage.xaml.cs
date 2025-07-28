@@ -25,7 +25,7 @@ namespace CryptoCurR.Views
             InitializeComponent();
 
             DataContext = vm;
-            _ = vm.InitializeAsync();
+            _ = vm.LoadTopCoinsAsync();
         }
     }
 }

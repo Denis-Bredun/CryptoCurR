@@ -73,10 +73,13 @@ namespace CryptoCurR
             services.AddScoped<IErrorHandler, ErrorHandler>();
             services.AddScoped<ICoinGeckoService, CoinGeckoService>();
             services.AddScoped<ICryptoListService, CryptoListService>();
+            services.AddScoped<ICoinDetailsMapper, CoinDetailsMapper>();
+            services.AddScoped<ICoinDetailsLoader, CoinDetailsLoader>();
 
             services.AddSingleton(CreateNotifier);
-            services.AddSingleton<MainPage>();
-            services.AddSingleton<MainPageViewModel>();
+            services.AddScoped<MainPage>();
+            services.AddScoped<MainPageViewModel>();
+            services.AddScoped<CoinDetailsViewModel>();
         }
 
         private Notifier CreateNotifier(IServiceProvider provider)

@@ -12,12 +12,11 @@ using ToastNotifications.Messages.Error;
 
 namespace CryptoCurR.ViewModels
 {
-    public partial class MainPageViewModel : ObservableObject
+    public partial class MainPageViewModel(
+        ICryptoListService cryptoListService) : ObservableObject
     {
-        private readonly ICryptoListService _cryptoListService;        
-
         [ObservableProperty]
-        private ObservableCollection<CoinMarketModel> _coins;
+        private ObservableCollection<CoinMarketModel> _coins = new ObservableCollection<CoinMarketModel>();
 
         [ObservableProperty]
         private CoinMarketModel _selectedCoin;
@@ -34,23 +33,12 @@ namespace CryptoCurR.ViewModels
         [ObservableProperty]
         private int _coinsPerPage = 10;
 
-        public MainPageViewModel(ICryptoListService cryptoListService)
-        {
-            _cryptoListService = cryptoListService;
-            Coins = new ObservableCollection<CoinMarketModel>();
-        }
-
-        public async Task InitializeAsync()
-        {
-            await LoadTopCoinsAsync();
-        }
-
-        [RelayCommand]
-        private async Task LoadTopCoinsAsync()
+        public async Task LoadTopCoinsAsync()
         {
             IsLoading = true;
-            var result = await _cryptoListService.LoadTopCoinsAsync(CurrentPage, CoinsPerPage);
+            var result = await cryptoListService.LoadTopCoinsAsync(CurrentPage, CoinsPerPage);
             Coins = new ObservableCollection<CoinMarketModel>(result);
+            SelectedCoin = Coins.FirstOrDefault() ?? new();
             IsLoading = false;
         }
 
@@ -58,7 +46,7 @@ namespace CryptoCurR.ViewModels
         private async Task SearchCoinsAsync()
         {
             IsLoading = true;
-            var result = await _cryptoListService.SearchCoinsAsync(SearchQuery ?? string.Empty);
+            var result = await cryptoListService.SearchCoinsAsync(SearchQuery ?? string.Empty);
             Coins = new ObservableCollection<CoinMarketModel>(result);
             IsLoading = false;
         }
