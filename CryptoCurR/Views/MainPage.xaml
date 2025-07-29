@@ -1,19 +1,14 @@
-﻿<Window x:Class="CryptoCurR.Views.MainPage"
+﻿<UserControl x:Class="CryptoCurR.Views.MainPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoCurR.Views"
         xmlns:lottie="clr-namespace:LottieSharp.WPF;assembly=LottieSharp"
-        mc:Ignorable="d"
-        Title="CryptoCurR - Cryptocurrencies"
-        Height="750" Width="755"
-        Background="#121212"
-        Foreground="White"
-        FontFamily="Segoe UI"
-        WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d">
 
-    <Window.Resources>
+    <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#2E2E2E"/>
             <Setter Property="Foreground" Value="White"/>
@@ -106,7 +101,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-    </Window.Resources>
+    </UserControl.Resources>
     <Grid>
         <Grid Margin="15">
 
@@ -149,8 +144,14 @@
                     <TextBlock Text="Rank" Grid.Column="6" Style="{StaticResource HeaderTextBlock}" HorizontalAlignment="Center"/>
                 </Grid>
 
-                <ListView ItemsSource="{Binding Coins}" Grid.Row="1" SelectedItem="{Binding SelectedCoin, Mode=TwoWay}">
-                <ListView.ItemTemplate>
+                    <ListView ItemsSource="{Binding Coins}" Grid.Row="1" SelectedItem="{Binding SelectedCoin, Mode=TwoWay}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding NavigateToCoinDetailsCommand}" 
+                                                  CommandParameter="{Binding SelectedCoin}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -221,4 +222,4 @@
 
     </Grid>
 
-</Window>
+</UserControl>

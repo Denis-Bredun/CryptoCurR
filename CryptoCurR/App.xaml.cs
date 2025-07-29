@@ -1,4 +1,5 @@
 ﻿using CryptoCurR.Interfaces;
+using CryptoCurR.Navigation;
 using CryptoCurR.Services;
 using CryptoCurR.ViewModels;
 using CryptoCurR.Views;
@@ -18,22 +19,25 @@ namespace CryptoCurR
 
         private IHost _host;
 
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             ConfigureLogger();
 
             _host = CreateHostBuilder().Build();
             Services = _host.Services;
 
-            ShowMainWindow();
+            await ShowNavigationWrapper();
 
             base.OnStartup(e);
         }
 
-        private void ShowMainWindow()
-        {
-            var mainWindow = Services.GetRequiredService<MainPage>();
-            mainWindow.Show();
+        private async Task ShowNavigationWrapper()
+        {           
+            var navigationWrapper = Services.GetRequiredService<NavigationWrapper>();
+            navigationWrapper.Show();
+            
+            var navigationService = Services.GetRequiredService<INavigationService>();
+            await navigationService.NavigateToMainAsync();
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -75,11 +79,21 @@ namespace CryptoCurR
             services.AddScoped<ICryptoListService, CryptoListService>();
             services.AddScoped<ICoinDetailsMapper, CoinDetailsMapper>();
             services.AddScoped<ICoinDetailsLoader, CoinDetailsLoader>();
+            services.AddScoped<IViewModelFactory, ViewModelFactory>();
+            services.AddScoped<INavigationService, NavigationService>();
 
             services.AddSingleton(CreateNotifier);
-            services.AddScoped<MainPage>();
+            services.AddSingleton<NavigationStore>();
             services.AddScoped<MainPageViewModel>();
+            services.AddScoped<MainPage>();
             services.AddScoped<CoinDetailsViewModel>();
+            services.AddScoped<CoinDetailsPage>();
+            services.AddSingleton<NavigationViewModel>();
+
+            services.AddSingleton(s => new NavigationWrapper()
+            {
+                DataContext = s.GetRequiredService<NavigationViewModel>()
+            });
         }
 
         private Notifier CreateNotifier(IServiceProvider provider)

@@ -18,14 +18,11 @@ namespace CryptoCurR.Views
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainPage : Window
+    public partial class MainPage : UserControl
     {
-        public MainPage(MainPageViewModel vm)
+        public MainPage()
         {
             InitializeComponent();
-
-            DataContext = vm;
-            _ = vm.LoadTopCoinsAsync();
         }
     }
 }

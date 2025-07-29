@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CryptoCurR.Views
+namespace CryptoCurR.Navigation
 {
     /// <summary>
-    /// Interaction logic for CoinDetailsPage.xaml
+    /// Interaction logic for NavigationWrapper.xaml
     /// </summary>
-    public partial class CoinDetailsPage : UserControl
+    public partial class NavigationWrapper : Window
     {
-        public CoinDetailsPage()
+        public NavigationWrapper()
         {
             InitializeComponent();
         }

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CryptoCurR.Constants;
 using CryptoCurR.Interfaces;
 using CryptoCurR.Models;
+using CryptoCurR.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +15,8 @@ using ToastNotifications.Messages.Error;
 namespace CryptoCurR.ViewModels
 {
     public partial class MainPageViewModel(
-        ICryptoListService cryptoListService) : ObservableObject
+        ICryptoListService cryptoListService,
+        INavigationService navigationService) : ObservableObject
     {
         [ObservableProperty]
         private ObservableCollection<CoinMarketModel> _coins = new ObservableCollection<CoinMarketModel>();
@@ -98,8 +100,9 @@ namespace CryptoCurR.ViewModels
         }
 
         [RelayCommand]
-        private void NavigateToCoinDetails(CoinMarketModel selectedCoin)
+        private async Task NavigateToCoinDetails(CoinMarketModel selectedCoin)
         {
+            await navigationService.NavigateToCoinDetailsAsync(selectedCoin?.Id);
         }
     }
 }
