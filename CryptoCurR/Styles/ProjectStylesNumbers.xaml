@@ -20,7 +20,7 @@
     <sys:Double x:Key="CoinIconSize">40</sys:Double>
     <sys:Double x:Key="LoadingAnimationSize">100</sys:Double>
     
-    <sys:Double x:Key="MainWindowHeight">750</sys:Double>
+    <sys:Double x:Key="MainWindowHeight">760</sys:Double>
     <sys:Double x:Key="MainWindowWidth">755</sys:Double>
     
     <sys:Double x:Key="PaginationSeparatorWidth">30</sys:Double>

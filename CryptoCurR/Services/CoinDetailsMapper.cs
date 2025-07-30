@@ -43,7 +43,7 @@ namespace CryptoCurR.Services
                 dto.CoinDetail ?? new(),
                 dto.CoinTickers ?? new(),
                 dto.MarketChart ?? new(),
-                new ObservableCollection<OhlcCandle>(dto.OhlcCandles) ?? []
+                new ObservableCollection<OhlcCandle>(dto.OhlcCandles ?? new())
             );
         }
 
@@ -51,7 +51,7 @@ namespace CryptoCurR.Services
         {
             return (
                 dto.MarketChart ?? new(),
-                new ObservableCollection<OhlcCandle>(dto.OhlcCandles) ?? []
+                new ObservableCollection<OhlcCandle>(dto.OhlcCandles ?? new())
             );
         }
     }

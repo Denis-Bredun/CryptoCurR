@@ -102,7 +102,9 @@ namespace CryptoCurR.ViewModels
         [RelayCommand]
         private async Task NavigateToCoinDetailsAsync(CoinMarketModel selectedCoin)
         {
+            IsLoading = true;
             await navigationService.NavigateToCoinDetailsAsync(selectedCoin?.Id);
+            IsLoading = false;
         }
     }
 }

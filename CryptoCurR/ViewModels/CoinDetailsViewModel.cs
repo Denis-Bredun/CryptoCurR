@@ -1,12 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CryptoCurR.Constants;
+using CryptoCurR.Converters;
 using CryptoCurR.Interfaces;
 using CryptoCurR.Models;
 using CryptoCurR.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +38,18 @@ namespace CryptoCurR.ViewModels
         [ObservableProperty]
         private int _selectedTimeframe = DefaultArguments.DefaultPeriodInDays;
 
+        [ObservableProperty]
+        private bool isLineChart = DefaultArguments.DefaultIsLineChart;
+
+        public bool IsCandlestickChart => !IsLineChart;
         public List<int> AvailableTimeframes { get; } = DefaultArguments.AvailableTimeframes;
+        public Func<double, string> DateLabelFormatter { get; } = DefaultArguments.DateLabelFormatter;
+        public Func<double, string> OhlcLabelFormatter { get; } = DefaultArguments.OhlcLabelFormatter;
+
+        partial void OnIsLineChartChanged(bool value)
+        {
+            OnPropertyChanged(nameof(IsCandlestickChart));
+        }
 
         public async Task InitializeAsync(string coinId)
         {
@@ -58,6 +71,23 @@ namespace CryptoCurR.ViewModels
             await LoadChartDataAsync();
         }
 
+        [RelayCommand]
+        private async Task GoBackAsync()
+        {
+            IsLoading = true;
+            await navigationService.NavigateToMainAsync();
+            IsLoading = false;
+        }
+
+        [RelayCommand]
+        private void OpenTradeUrl(string url)
+        {
+            if (!string.IsNullOrWhiteSpace(url))
+            {
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
+        }
+
         private async Task LoadChartDataAsync()
         {
             IsLoading = true;
@@ -66,12 +96,6 @@ namespace CryptoCurR.ViewModels
             (MarketChart, OhlcCandles) = mapper.MapFromDto(dto);
 
             IsLoading = false;
-        }
-
-        [RelayCommand]
-        private async Task GoBackAsync()
-        {
-            await navigationService.NavigateToMainAsync();
         }
     }
 }

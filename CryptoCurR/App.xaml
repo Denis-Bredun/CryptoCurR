@@ -14,6 +14,11 @@
 
             <converters:PriceChangeToBrushConverter x:Key="PriceChangeToBrushConverter" />
             <converters:BoolToVisConverter x:Key="BoolToVisConverter" />
+            <converters:TimeframeToBrushMultiConverter x:Key="TimeframeToBrushMultiConverter"
+                                     SelectedBrush="Red"
+                                     DefaultBrush="Brown"/>
+            <converters:MarketChartConverter x:Key="MarketChartConverter"/>
+            <converters:OhlcSeriesConverter x:Key="OhlcSeriesConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
