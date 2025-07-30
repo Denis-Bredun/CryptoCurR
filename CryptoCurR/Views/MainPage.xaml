@@ -101,7 +101,7 @@
                 <TextBlock Text="{Binding CurrentPage}" Style="{StaticResource PageNumberTextBlock}"/>
                 <Button Content="Next &gt;" Command="{Binding NextPageCommand}" />
 
-                <Separator Width="30" Visibility="Collapsed"/>
+                <Separator Style="{StaticResource PaginationSeparator}"/>
 
                 <Button Content="+ Items" Command="{Binding IncreasePageSizeCommand}" />
                 <Button Content="- Items" Command="{Binding DecreasePageSizeCommand}" />

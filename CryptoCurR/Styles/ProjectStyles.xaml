@@ -5,11 +5,11 @@
     <Style TargetType="Button">
         <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
-        <Setter Property="Padding" Value="8,4"/>
-        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="Padding" Value="{StaticResource ButtonPadding}"/>
+        <Setter Property="Margin" Value="{StaticResource ButtonMargin}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="BorderBrush" Value="{StaticResource ButtonBorder}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThickness}"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -17,7 +17,7 @@
                     <Border Background="{TemplateBinding Background}" 
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="4">
+                            CornerRadius="{StaticResource ButtonCornerRadius}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -45,8 +45,8 @@
         <Setter Property="Background" Value="{StaticResource TertiaryBackground}"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryBorder}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="6,4"/>
+        <Setter Property="BorderThickness" Value="{StaticResource TextBoxBorderThickness}"/>
+        <Setter Property="Padding" Value="{StaticResource TextBoxPadding}"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -55,13 +55,13 @@
     <Style TargetType="ListView">
         <Setter Property="Background" Value="{StaticResource SecondaryBackground}"/>
         <Setter Property="BorderBrush" Value="{StaticResource SecondaryBorder}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ListViewBorderThickness}"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
     </Style>
 
     <Style TargetType="ListViewItem">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Padding" Value="6"/>
+        <Setter Property="Padding" Value="{StaticResource ListItemPadding}"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -92,13 +92,13 @@
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource HeaderFontSize}"/>
-        <Setter Property="Padding" Value="8,6"/>
+        <Setter Property="Padding" Value="{StaticResource HeaderPadding}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style x:Key="PageNumberTextBlock" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="10,0"/>
+        <Setter Property="Margin" Value="{StaticResource PageNumberMargin}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource PageNumberFontSize}"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
@@ -108,38 +108,38 @@
         <Setter Property="Background" Value="{StaticResource LoadingOverlay}"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="Panel.ZIndex" Value="100"/>
+        <Setter Property="Panel.ZIndex" Value="{StaticResource LoadingOverlayZIndex}"/>
     </Style>
 
     <Style x:Key="SearchPanel" TargetType="StackPanel">
         <Setter Property="Orientation" Value="Horizontal"/>
-        <Setter Property="Margin" Value="0,0,0,15"/>
+        <Setter Property="Margin" Value="{StaticResource SearchPanelMargin}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style x:Key="HeaderGrid" TargetType="Grid">
-        <Setter Property="Margin" Value="0,0,0,8"/>
+        <Setter Property="Margin" Value="{StaticResource HeaderGridMargin}"/>
         <Setter Property="Background" Value="{StaticResource HeaderBackground}"/>
     </Style>
 
     <Style x:Key="PaginationPanel" TargetType="StackPanel">
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="0,15,0,0"/>
+        <Setter Property="Margin" Value="{StaticResource PaginationPanelMargin}"/>
     </Style>
 
     <Style x:Key="MainGrid" TargetType="Grid">
-        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Margin" Value="{StaticResource MainGridMargin}"/>
     </Style>
 
     <Style x:Key="SearchTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-        <Setter Property="Width" Value="610"/>
+        <Setter Property="Width" Value="{StaticResource SearchTextBoxWidth}"/>
     </Style>
 
     <Style x:Key="CoinIcon" TargetType="Image">
-        <Setter Property="Width" Value="40"/>
-        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="{StaticResource CoinIconSize}"/>
+        <Setter Property="Height" Value="{StaticResource CoinIconSize}"/>
         <Setter Property="Stretch" Value="Uniform"/>
     </Style>
 
@@ -177,14 +177,19 @@
         <Setter Property="RepeatCount" Value="-1"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Width" Value="100"/>
-        <Setter Property="Height" Value="100"/>
+        <Setter Property="Width" Value="{StaticResource LoadingAnimationSize}"/>
+        <Setter Property="Height" Value="{StaticResource LoadingAnimationSize}"/>
+    </Style>
+
+    <Style x:Key="PaginationSeparator" TargetType="Separator">
+        <Setter Property="Width" Value="{StaticResource PaginationSeparatorWidth}"/>
+        <Setter Property="Visibility" Value="Collapsed"/>
     </Style>
 
     <Style x:Key="MainWindow" TargetType="Window">
         <Setter Property="Title" Value="CryptoCurR"/>
-        <Setter Property="Height" Value="750"/>
-        <Setter Property="Width" Value="755"/>
+        <Setter Property="Height" Value="{StaticResource MainWindowHeight}"/>
+        <Setter Property="Width" Value="{StaticResource MainWindowWidth}"/>
         <Setter Property="Background" Value="{StaticResource PrimaryBackground}"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>

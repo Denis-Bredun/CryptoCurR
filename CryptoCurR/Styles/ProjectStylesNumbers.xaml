@@ -6,4 +6,33 @@
     <sys:Double x:Key="HeaderFontSize">14</sys:Double>
     <sys:Double x:Key="PageNumberFontSize">14</sys:Double>
     
+    <Thickness x:Key="ButtonBorderThickness">1</Thickness>
+    <CornerRadius x:Key="ButtonCornerRadius">4</CornerRadius>
+    
+    <Thickness x:Key="TextBoxBorderThickness">1</Thickness>
+    
+    <Thickness x:Key="ListViewBorderThickness">1</Thickness>
+    <Thickness x:Key="ListItemPadding">6</Thickness>
+    
+    <sys:Int32 x:Key="LoadingOverlayZIndex">100</sys:Int32>
+    
+    <sys:Double x:Key="SearchTextBoxWidth">610</sys:Double>
+    <sys:Double x:Key="CoinIconSize">40</sys:Double>
+    <sys:Double x:Key="LoadingAnimationSize">100</sys:Double>
+    
+    <sys:Double x:Key="MainWindowHeight">750</sys:Double>
+    <sys:Double x:Key="MainWindowWidth">755</sys:Double>
+    
+    <sys:Double x:Key="PaginationSeparatorWidth">30</sys:Double>
+    
+    <Thickness x:Key="ButtonPadding">8,4</Thickness>
+    <Thickness x:Key="ButtonMargin">5,0</Thickness>
+    <Thickness x:Key="TextBoxPadding">6,4</Thickness>
+    <Thickness x:Key="HeaderPadding">8,6</Thickness>
+    <Thickness x:Key="PageNumberMargin">10,0</Thickness>
+    <Thickness x:Key="MainGridMargin">15</Thickness>
+    <Thickness x:Key="SearchPanelMargin">0,0,0,15</Thickness>
+    <Thickness x:Key="HeaderGridMargin">0,0,0,8</Thickness>
+    <Thickness x:Key="PaginationPanelMargin">0,15,0,0</Thickness>
+    
 </ResourceDictionary> 
