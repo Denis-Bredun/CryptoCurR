@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CryptoCurR.Constants;
 using CryptoCurR.Interfaces;
 using CryptoCurR.Models;
+using CryptoCurR.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +15,8 @@ namespace CryptoCurR.ViewModels
 {
     public partial class CoinDetailsViewModel(
             ICoinDetailsLoader loader,
-            ICoinDetailsMapper mapper) : ObservableObject
+            ICoinDetailsMapper mapper,
+            INavigationService navigationService) : ObservableObject
     {
         [ObservableProperty]
         private CoinDetailModel? _coinDetail;
@@ -64,6 +66,12 @@ namespace CryptoCurR.ViewModels
             (MarketChart, OhlcCandles) = mapper.MapFromDto(dto);
 
             IsLoading = false;
+        }
+
+        [RelayCommand]
+        private async Task GoBackAsync()
+        {
+            await navigationService.NavigateToMainAsync();
         }
     }
 }

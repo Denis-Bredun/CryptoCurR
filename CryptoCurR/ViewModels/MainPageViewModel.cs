@@ -100,7 +100,7 @@ namespace CryptoCurR.ViewModels
         }
 
         [RelayCommand]
-        private async Task NavigateToCoinDetails(CoinMarketModel selectedCoin)
+        private async Task NavigateToCoinDetailsAsync(CoinMarketModel selectedCoin)
         {
             await navigationService.NavigateToCoinDetailsAsync(selectedCoin?.Id);
         }
