@@ -7,11 +7,7 @@
         xmlns:vm="clr-namespace:CryptoCurR.ViewModels"
         xmlns:views="clr-namespace:CryptoCurR.Views"
         mc:Ignorable="d"
-        Title="CryptoCurR - Cryptocurrencies"
-        Height="750" Width="755"
-        Background="#121212"
-        Foreground="White"
-        FontFamily="Segoe UI"
+        Style="{StaticResource MainWindow}"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>

@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <sys:Double x:Key="SmallFontSize">12</sys:Double>
+    <sys:Double x:Key="NormalFontSize">14</sys:Double>
+    <sys:Double x:Key="LargeFontSize">16</sys:Double>
+    <sys:Double x:Key="HeaderFontSize">14</sys:Double>
+    <sys:Double x:Key="PageNumberFontSize">14</sys:Double>
+    
+    <sys:Double x:Key="SmallPadding">4</sys:Double>
+    <sys:Double x:Key="NormalPadding">6</sys:Double>
+    <sys:Double x:Key="MediumPadding">8</sys:Double>
+    <sys:Double x:Key="LargePadding">10</sys:Double>
+    <sys:Double x:Key="ButtonPadding">8</sys:Double>
+    <sys:Double x:Key="TextBoxPadding">6</sys:Double>
+    <sys:Double x:Key="HeaderPadding">8</sys:Double>
+    <sys:Double x:Key="ListItemPadding">6</sys:Double>
+    <sys:Double x:Key="PageNumberPadding">10</sys:Double>
+    
+    <sys:Double x:Key="SmallMargin">5</sys:Double>
+    <sys:Double x:Key="NormalMargin">10</sys:Double>
+    <sys:Double x:Key="MediumMargin">15</sys:Double>
+    <sys:Double x:Key="LargeMargin">20</sys:Double>
+    <sys:Double x:Key="ButtonMargin">5</sys:Double>
+    <sys:Double x:Key="PageNumberMargin">10</sys:Double>
+    <sys:Double x:Key="HeaderMargin">8</sys:Double>
+    
+    <sys:Double x:Key="ThinBorder">1</sys:Double>
+    <sys:Double x:Key="NormalBorder">1</sys:Double>
+    
+    <sys:Double x:Key="ButtonCornerRadius">4</sys:Double>
+    
+    <sys:Double x:Key="CoinIconSize">40</sys:Double>
+    <sys:Double x:Key="LoadingAnimationSize">100</sys:Double>
+    
+    <sys:Double x:Key="SeparatorWidth">30</sys:Double>
+    
+    <sys:Int32 x:Key="LoadingOverlayZIndex">100</sys:Int32>
+    
+</ResourceDictionary> 

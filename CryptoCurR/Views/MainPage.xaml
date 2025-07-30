@@ -8,102 +8,9 @@
         xmlns:lottie="clr-namespace:LottieSharp.WPF;assembly=LottieSharp"
         mc:Ignorable="d">
 
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#2E2E2E"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="8,4"/>
-            <Setter Property="Margin" Value="5,0"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="BorderBrush" Value="#444"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="4">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#505050"/>
-                                <Setter Property="BorderBrush" Value="#888"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#3A3A3A"/>
-                                <Setter Property="BorderBrush" Value="#AAA"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="#1E1E1E"/>
-                                <Setter Property="Foreground" Value="#666"/>
-                                <Setter Property="BorderBrush" Value="#222"/>
-                                <Setter Property="Cursor" Value="Arrow"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
-        <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#1E1E1E"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#444"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="6,4"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <Style TargetType="ListView">
-            <Setter Property="Background" Value="#1B1B1B"/>
-            <Setter Property="BorderBrush" Value="#333"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
-
-        <Style TargetType="ListViewItem">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Padding" Value="6"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListViewItem">
-                        <Border x:Name="Bd" 
-                                Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="true"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#333333"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#2A2A2A"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="HeaderTextBlock" TargetType="TextBlock">
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-
-    </UserControl.Resources>
     <Grid>
-        <Grid Margin="15">
+        <Grid Style="{StaticResource MainGrid}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -111,8 +18,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0 0 0 15" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBox Width="610"
+            <StackPanel Grid.Row="0" Style="{StaticResource SearchPanel}">
+                <TextBox Style="{StaticResource SearchTextBox}"
                      Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Content="Search" Command="{Binding SearchCoinsCommand}" />
                 <Button Content="Reset" Command="{Binding ResetCommand}" />
@@ -124,7 +31,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
-                <Grid Grid.Row="0" Margin="0 0 0 8" Background="#2A2A2A">
+                <Grid Grid.Row="0" Style="{StaticResource HeaderGrid}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="120"/>
@@ -164,15 +71,15 @@
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Width="40" Height="40" Stretch="Uniform" Source="{Binding Image}" />
+                            <Image Grid.Column="0" Style="{StaticResource CoinIcon}" Source="{Binding Image}" />
 
-                            <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" Style="{StaticResource CoinNameTextBlock}" />
 
-                            <TextBlock Grid.Column="2" Text="{Binding Symbol}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="2" Text="{Binding Symbol}" Style="{StaticResource CoinSymbolTextBlock}" />
 
-                            <TextBlock Grid.Column="3" Text="{Binding CurrentPrice, StringFormat=C}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="3" Text="{Binding CurrentPrice, StringFormat=C}" Style="{StaticResource CoinPriceTextBlock}" />
 
-                            <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Grid.Column="4" Style="{StaticResource CoinChangeTextBlock}">
                                 <TextBlock.Text>
                                       <Binding Path="PriceChangePercentage24h" StringFormat="{}{0:F2}%"/>
                                 </TextBlock.Text>
@@ -181,42 +88,35 @@
                                 </TextBlock.Foreground>
                             </TextBlock>
 
-                            <TextBlock Grid.Column="5" Text="{Binding MarketCap, StringFormat=N0}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="5" Text="{Binding MarketCap, StringFormat=N0}" Style="{StaticResource CoinMarketCapTextBlock}" />
 
-                            <TextBlock Grid.Column="6" Text="{Binding MarketCapRank}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="6" Text="{Binding MarketCapRank}" Style="{StaticResource CoinRankTextBlock}" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             </Grid>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="0,15,0,0">
+            <StackPanel Grid.Row="2" Style="{StaticResource PaginationPanel}">
                 <Button Content="&lt; Previous" Command="{Binding PreviousPageCommand}" />
-                <TextBlock Text="{Binding CurrentPage}" VerticalAlignment="Center" Margin="10,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Text="{Binding CurrentPage}" Style="{StaticResource PageNumberTextBlock}"/>
                 <Button Content="Next &gt;" Command="{Binding NextPageCommand}" />
 
                 <Separator Width="30" Visibility="Collapsed"/>
 
                 <Button Content="+ Items" Command="{Binding IncreasePageSizeCommand}" />
                 <Button Content="- Items" Command="{Binding DecreasePageSizeCommand}" />
-                <TextBlock Text="{Binding CoinsPerPage}" VerticalAlignment="Center" Margin="10,0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Text="{Binding CoinsPerPage}" Style="{StaticResource PageNumberTextBlock}"/>
             </StackPanel>
 
         </Grid>
 
-        <Border Background="#80000000"
-        Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisConverter}}"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        Panel.ZIndex="100">
+        <Border Style="{StaticResource LoadingOverlayBorder}"
+        Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisConverter}}">
             <lottie:LottieAnimationView
         FileName="Assets\\loading.json"
-        RepeatCount="-1"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Width="100"
-        Height="100"
-        AutoPlay="True" />
+        Style="{StaticResource LoadingAnimation}"
+                AutoPlay="True"/>
         </Border>
 
 

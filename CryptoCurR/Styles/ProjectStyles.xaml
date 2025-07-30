@@ -1,0 +1,193 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:lottie="clr-namespace:LottieSharp.WPF;assembly=LottieSharp">
+    
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorder}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ButtonHoverBackground}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource ButtonHoverBorder}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ButtonPressedBackground}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource ButtonPressedBorder}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource ButtonDisabledBackground}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForeground}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource ButtonDisabledBorder}"/>
+                            <Setter Property="Cursor" Value="Arrow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource TertiaryBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBorder}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="6,4"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="ListView">
+        <Setter Property="Background" Value="{StaticResource SecondaryBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SecondaryBorder}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+    </Style>
+
+    <Style TargetType="ListViewItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="Bd" 
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="true"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource SelectedBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource HoverBackground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="HeaderTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="{StaticResource HeaderFontSize}"/>
+        <Setter Property="Padding" Value="8,6"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="PageNumberTextBlock" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10,0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="{StaticResource PageNumberFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+    </Style>
+
+    <Style x:Key="LoadingOverlayBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource LoadingOverlay}"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Panel.ZIndex" Value="100"/>
+    </Style>
+
+    <Style x:Key="SearchPanel" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="0,0,0,15"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="HeaderGrid" TargetType="Grid">
+        <Setter Property="Margin" Value="0,0,0,8"/>
+        <Setter Property="Background" Value="{StaticResource HeaderBackground}"/>
+    </Style>
+
+    <Style x:Key="PaginationPanel" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,15,0,0"/>
+    </Style>
+
+    <Style x:Key="MainGrid" TargetType="Grid">
+        <Setter Property="Margin" Value="15"/>
+    </Style>
+
+    <Style x:Key="SearchTextBox" TargetType="TextBox">
+        <Setter Property="Width" Value="610"/>
+    </Style>
+
+    <Style x:Key="CoinIcon" TargetType="Image">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Stretch" Value="Uniform"/>
+    </Style>
+
+    <Style x:Key="CoinNameTextBlock" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="CoinSymbolTextBlock" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="CoinPriceTextBlock" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="CoinChangeTextBlock" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="CoinMarketCapTextBlock" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="CoinRankTextBlock" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="LoadingAnimation" TargetType="lottie:LottieAnimationView">
+        <Setter Property="RepeatCount" Value="-1"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+    </Style>
+
+    <Style x:Key="MainWindow" TargetType="Window">
+        <Setter Property="Title" Value="CryptoCurR - Cryptocurrencies"/>
+        <Setter Property="Height" Value="750"/>
+        <Setter Property="Width" Value="755"/>
+        <Setter Property="Background" Value="{StaticResource PrimaryBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+    </Style>
+
+</ResourceDictionary> 
