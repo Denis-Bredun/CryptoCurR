@@ -25,4 +25,9 @@
     
     <SolidColorBrush x:Key="LoadingOverlay" Color="#80000000"/>
     
+    <SolidColorBrush x:Key="MarketsHeaderBackground" Color="#222"/>
+    <SolidColorBrush x:Key="MarketsTextForeground" Color="White"/>
+    <SolidColorBrush x:Key="MarketItemBorderColor" Color="Gray"/>
+    <SolidColorBrush x:Key="SecondaryTextForeground" Color="Gray"/>
+    
 </ResourceDictionary> 

@@ -20,95 +20,83 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <StackPanel Style="{StaticResource CoinDetailsHeader}">
                 <Button Content="← Back"
                         Command="{Binding GoBackCommand}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Margin="0,0,20,0"
-                        FontWeight="Bold"/>
-                <Image Width="64" 
-                       Height="64"
-                       Source="{Binding CoinDetail.Image.Large}" 
-                       Margin="0,0,10,0"/>
-                <StackPanel>
-                    <TextBlock FontSize="24" 
-                               FontWeight="Bold" 
+                        Style="{StaticResource BackButton}"/>
+                <Image Style="{StaticResource CoinDetailsImage}"
+                       Source="{Binding CoinDetail.Image.Large}"/>
+                <StackPanel Style="{StaticResource CoinDetailsInfo}">
+                    <TextBlock Style="{StaticResource CoinNameText}"
                                Text="{Binding CoinDetail.Name}" />
-                    <TextBlock FontSize="14" 
-                               Foreground="Gray" 
+                    <TextBlock Style="{StaticResource CoinSymbolText}"
                                Text="{Binding CoinDetail.Symbol}" />
                 </StackPanel>
             </StackPanel>
 
             <UniformGrid Grid.Row="1" 
-                         Columns="3" 
-                         Margin="0,0,0,10">
-                <StackPanel>
-                    <TextBlock Text="Current Price:" 
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding CoinDetail.MarketData.CurrentPrice.usd, StringFormat='{}{0:C}'}" />
+                         Style="{StaticResource MarketDataGrid}">
+                <StackPanel Style="{StaticResource MarketDataItem}">
+                    <TextBlock Style="{StaticResource MarketDataLabel}"
+                               Text="Current Price:" />
+                    <TextBlock Style="{StaticResource MarketDataValue}"
+                               Text="{Binding CoinDetail.MarketData.CurrentPrice.usd, StringFormat='{}{0:C}'}" />
                 </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Market Cap:" 
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding CoinDetail.MarketData.MarketCap.usd, StringFormat='{}{0:C}'}" />
+                <StackPanel Style="{StaticResource MarketDataItem}">
+                    <TextBlock Style="{StaticResource MarketDataLabel}"
+                               Text="Market Cap:" />
+                    <TextBlock Style="{StaticResource MarketDataValue}"
+                               Text="{Binding CoinDetail.MarketData.MarketCap.usd, StringFormat='{}{0:C}'}" />
                 </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="24h Volume:" 
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding CoinDetail.MarketData.TotalVolume.usd, StringFormat='{}{0:C}'}" />
+                <StackPanel Style="{StaticResource MarketDataItem}">
+                    <TextBlock Style="{StaticResource MarketDataLabel}"
+                               Text="24h Volume:" />
+                    <TextBlock Style="{StaticResource MarketDataValue}"
+                               Text="{Binding CoinDetail.MarketData.TotalVolume.usd, StringFormat='{}{0:C}'}" />
                 </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="24h Change:" 
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h, StringFormat='{}{0:F2}%'}"
+                <StackPanel Style="{StaticResource MarketDataItem}">
+                    <TextBlock Style="{StaticResource MarketDataLabel}"
+                               Text="24h Change:" />
+                    <TextBlock Style="{StaticResource MarketDataValue}"
+                               Text="{Binding CoinDetail.MarketData.PriceChangePercentage24h, StringFormat='{}{0:F2}%'}"
                                Foreground="{Binding CoinDetail.MarketData.PriceChangePercentage24h, Converter={StaticResource PriceChangeToBrushConverter}}" />
                 </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="7d Change:" 
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding CoinDetail.MarketData.PriceChangePercentage7d, StringFormat='{}{0:F2}%'}"
+                <StackPanel Style="{StaticResource MarketDataItem}">
+                    <TextBlock Style="{StaticResource MarketDataLabel}"
+                               Text="7d Change:" />
+                    <TextBlock Style="{StaticResource MarketDataValue}"
+                               Text="{Binding CoinDetail.MarketData.PriceChangePercentage7d, StringFormat='{}{0:F2}%'}"
                                Foreground="{Binding CoinDetail.MarketData.PriceChangePercentage7d, Converter={StaticResource PriceChangeToBrushConverter}}" />
                 </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Circulating Supply:" 
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding CoinDetail.MarketData.CirculatingSupply, StringFormat='{}{0:N0}'}" />
+                <StackPanel Style="{StaticResource MarketDataItem}">
+                    <TextBlock Style="{StaticResource MarketDataLabel}"
+                               Text="Circulating Supply:" />
+                    <TextBlock Style="{StaticResource MarketDataValue}"
+                               Text="{Binding CoinDetail.MarketData.CirculatingSupply, StringFormat='{}{0:N0}'}" />
                 </StackPanel>
             </UniformGrid>
 
             <StackPanel Grid.Row="2" 
-                        Orientation="Horizontal" 
-                        Margin="0,0,0,10" 
-                        HorizontalAlignment="Left">
-                <TextBlock Text="Chart Type:" 
-                           FontWeight="SemiBold" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,0"/>
+                        Style="{StaticResource ChartControlsPanel}">
+                <TextBlock Style="{StaticResource ChartTypeLabel}"/>
                 <RadioButton Content="Line" 
                              IsChecked="{Binding IsLineChart}" 
                              GroupName="ChartType" 
-                             Margin="0,0,5,0" 
-                             Foreground="White"/>
+                             Style="{StaticResource ChartTypeRadioButton}"/>
                 <RadioButton Content="Candlestick" 
                              IsChecked="{Binding IsCandlestickChart, Mode=OneWay}" 
                              GroupName="ChartType" 
-                             Foreground="White"/>
+                             Style="{StaticResource ChartTypeRadioButton}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2" 
-                        Orientation="Horizontal" 
-                        Margin="250,0,10,10">
-                <TextBlock Text="Timeframe:" 
-                           FontWeight="SemiBold" 
-                           VerticalAlignment="Center" 
-                           Margin="0,0,10,0"/>
+                        Style="{StaticResource TimeframePanel}">
+                <TextBlock Style="{StaticResource TimeframeLabel}"/>
                 <ItemsControl ItemsSource="{Binding AvailableTimeframes}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Content="{Binding}" 
-                                    Margin="2,0"
+                                    Style="{StaticResource TimeframeButton}"
                                     Command="{Binding DataContext.ChangeTimeframeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                     CommandParameter="{Binding}">
                                 <Button.Background>
@@ -158,74 +146,59 @@
                 </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
 
-            <GroupBox Header="Markets" 
-                      Grid.Row="4" 
-                      Margin="0,10,0,0" 
-                      MinHeight="200" 
-                      MaxHeight="400">
+            <GroupBox Grid.Row="4" 
+                      Style="{StaticResource MarketsGroupBox}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal" 
-                                Grid.Row="0" 
-                                Background="#222">
+                    <StackPanel Grid.Row="0" 
+                                Style="{StaticResource MarketsHeader}">
                         <TextBlock Text="Market" 
                                    Width="150" 
-                                   Foreground="White" 
-                                   FontWeight="SemiBold"/>
+                                   Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Base" 
                                    Width="50" 
-                                   Foreground="White" 
-                                   FontWeight="SemiBold"/>
+                                   Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Target" 
                                    Width="50" 
-                                   Foreground="White" 
-                                   FontWeight="SemiBold"/>
+                                   Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Last" 
                                    Width="100" 
-                                   Foreground="White" 
-                                   FontWeight="SemiBold"/>
+                                   Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Volume" 
                                    Width="100" 
-                                   Foreground="White" 
-                                   FontWeight="SemiBold"/>
+                                   Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="" 
                                    Width="40"/>
                     </StackPanel>
 
                     <ScrollViewer Grid.Row="1" 
-                                  VerticalScrollBarVisibility="Auto" 
-                                  HorizontalScrollBarVisibility="Disabled">
+                                  Style="{StaticResource MarketsScrollViewer}">
                         <ItemsControl ItemsSource="{Binding CoinTickers.Tickers}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Gray" 
-                                            BorderThickness="0 0 0 1" 
-                                            Padding="5">
-                                        <StackPanel Orientation="Horizontal" 
-                                                    HorizontalAlignment="Stretch">
+                                    <Border Style="{StaticResource MarketItemBorder}">
+                                        <StackPanel Style="{StaticResource MarketItemPanel}">
                                             <TextBlock Text="{Binding Market.Name}" 
                                                        Width="150" 
-                                                       Foreground="White"/>
+                                                       Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Base}" 
                                                        Width="50" 
-                                                       Foreground="White"/>
+                                                       Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Target}" 
                                                        Width="50" 
-                                                       Foreground="White"/>
+                                                       Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Last, StringFormat='{}{0:F2}'}" 
                                                        Width="100" 
-                                                       Foreground="White"/>
+                                                       Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Volume, StringFormat='{}{0:N0}'}" 
                                                        Width="100" 
-                                                       Foreground="White"/>
+                                                       Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Width="40" 
-                                                       Text="Open" 
-                                                       Foreground="White" 
-                                                       Cursor="Hand">
+                                                       Style="{StaticResource MarketOpenLink}">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding DataContext.OpenTradeUrlCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 

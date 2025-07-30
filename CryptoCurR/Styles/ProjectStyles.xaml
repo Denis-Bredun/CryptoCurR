@@ -2,6 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:lottie="clr-namespace:LottieSharp.WPF;assembly=LottieSharp">
     
+    <Style x:Key="BaseTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BaseStackPanel" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+    <Style x:Key="BaseImage" TargetType="Image">
+        <Setter Property="Stretch" Value="Uniform"/>
+    </Style>
+
     <Style TargetType="Button">
         <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
@@ -64,7 +77,7 @@
         <Setter Property="Padding" Value="{StaticResource ListItemPadding}"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -88,20 +101,16 @@
         </Setter>
     </Style>
 
-    <Style x:Key="HeaderTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+    <Style x:Key="HeaderTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource HeaderFontSize}"/>
         <Setter Property="Padding" Value="{StaticResource HeaderPadding}"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="PageNumberTextBlock" TargetType="TextBlock">
-        <Setter Property="VerticalAlignment" Value="Center"/>
+    <Style x:Key="PageNumberTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="Margin" Value="{StaticResource PageNumberMargin}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource PageNumberFontSize}"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
     </Style>
 
     <Style x:Key="LoadingOverlayBorder" TargetType="Border">
@@ -111,8 +120,7 @@
         <Setter Property="Panel.ZIndex" Value="{StaticResource LoadingOverlayZIndex}"/>
     </Style>
 
-    <Style x:Key="SearchPanel" TargetType="StackPanel">
-        <Setter Property="Orientation" Value="Horizontal"/>
+    <Style x:Key="SearchPanel" TargetType="StackPanel" BasedOn="{StaticResource BaseStackPanel}">
         <Setter Property="Margin" Value="{StaticResource SearchPanelMargin}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -123,8 +131,7 @@
         <Setter Property="Background" Value="{StaticResource HeaderBackground}"/>
     </Style>
 
-    <Style x:Key="PaginationPanel" TargetType="StackPanel">
-        <Setter Property="Orientation" Value="Horizontal"/>
+    <Style x:Key="PaginationPanel" TargetType="StackPanel" BasedOn="{StaticResource BaseStackPanel}">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="{StaticResource PaginationPanelMargin}"/>
     </Style>
@@ -143,40 +150,33 @@
         <Setter Property="Width" Value="{StaticResource SearchTextBoxWidth}"/>
     </Style>
 
-    <Style x:Key="CoinIcon" TargetType="Image">
+    <Style x:Key="CoinIcon" TargetType="Image" BasedOn="{StaticResource BaseImage}">
         <Setter Property="Width" Value="{StaticResource CoinIconSize}"/>
         <Setter Property="Height" Value="{StaticResource CoinIconSize}"/>
-        <Setter Property="Stretch" Value="Uniform"/>
     </Style>
 
-    <Style x:Key="CoinNameTextBlock" TargetType="TextBlock">
+    <Style x:Key="CoinNameTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="CoinSymbolTextBlock" TargetType="TextBlock">
+    <Style x:Key="CoinSymbolTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="CoinPriceTextBlock" TargetType="TextBlock">
+    <Style x:Key="CoinPriceTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="CoinChangeTextBlock" TargetType="TextBlock">
+    <Style x:Key="CoinChangeTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="CoinMarketCapTextBlock" TargetType="TextBlock">
+    <Style x:Key="CoinMarketCapTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="CoinRankTextBlock" TargetType="TextBlock">
+    <Style x:Key="CoinRankTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style x:Key="LoadingAnimation" TargetType="lottie:LottieAnimationView">
@@ -202,6 +202,128 @@
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="ResizeMode" Value="CanResize"/>
+    </Style>
+
+    <Style x:Key="BackButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Width" Value="{StaticResource BackButtonWidth}"/>
+        <Setter Property="Margin" Value="{StaticResource BackButtonMargin}"/>
+    </Style>
+
+    <Style x:Key="CoinDetailsHeader" TargetType="StackPanel" BasedOn="{StaticResource BaseStackPanel}">
+        <Setter Property="Margin" Value="{StaticResource CoinDetailsHeaderMargin}"/>
+    </Style>
+
+    <Style x:Key="CoinDetailsImage" TargetType="Image" BasedOn="{StaticResource BaseImage}">
+        <Setter Property="Width" Value="{StaticResource CoinDetailsImageSize}"/>
+        <Setter Property="Height" Value="{StaticResource CoinDetailsImageSize}"/>
+        <Setter Property="Margin" Value="{StaticResource CoinDetailsImageMargin}"/>
+    </Style>
+
+    <Style x:Key="CoinDetailsInfo" TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="CoinNameText" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource CoinNameFontSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="CoinSymbolText" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource CoinSymbolFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource SecondaryTextForeground}"/>
+    </Style>
+
+    <Style x:Key="MarketDataGrid" TargetType="UniformGrid">
+        <Setter Property="Columns" Value="3"/>
+        <Setter Property="Margin" Value="{StaticResource MarketDataGridMargin}"/>
+    </Style>
+
+    <Style x:Key="MarketDataItem" TargetType="StackPanel">
+        <Setter Property="Margin" Value="{StaticResource MarketDataItemMargin}"/>
+    </Style>
+
+    <Style x:Key="MarketDataLabel" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="{StaticResource MarketDataLabelMargin}"/>
+    </Style>
+
+    <Style x:Key="MarketDataValue" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+    </Style>
+
+    <Style x:Key="ChartControlsPanel" TargetType="StackPanel" BasedOn="{StaticResource BaseStackPanel}">
+        <Setter Property="Margin" Value="{StaticResource ChartControlsPanelMargin}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="ChartTypeLabel" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="Text" Value="Chart Type:"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="{StaticResource ChartTypeLabelMargin}"/>
+    </Style>
+
+    <Style x:Key="ChartTypeRadioButton" TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="{StaticResource ChartTypeRadioButtonMargin}"/>
+    </Style>
+
+    <Style x:Key="TimeframePanel" TargetType="StackPanel" BasedOn="{StaticResource BaseStackPanel}">
+        <Setter Property="Margin" Value="{StaticResource TimeframePanelMargin}"/>
+    </Style>
+
+    <Style x:Key="TimeframeLabel" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="Text" Value="Timeframe:"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="{StaticResource TimeframeLabelMargin}"/>
+    </Style>
+
+    <Style x:Key="TimeframeButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Margin" Value="{StaticResource TimeframeButtonMargin}"/>
+        <Setter Property="MinWidth" Value="{StaticResource TimeframeButtonMinWidth}"/>
+    </Style>
+
+    <Style x:Key="MarketsGroupBox" TargetType="GroupBox">
+        <Setter Property="Header" Value="Markets"/>
+        <Setter Property="Margin" Value="{StaticResource MarketsGroupBoxMargin}"/>
+        <Setter Property="MinHeight" Value="{StaticResource MarketsMinHeight}"/>
+        <Setter Property="MaxHeight" Value="{StaticResource MarketsMaxHeight}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBorder}"/>
+    </Style>
+
+    <Style x:Key="MarketsHeader" TargetType="StackPanel" BasedOn="{StaticResource BaseStackPanel}">
+        <Setter Property="Background" Value="{StaticResource MarketsHeaderBackground}"/>
+    </Style>
+
+    <Style x:Key="MarketsHeaderText" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource MarketsTextForeground}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Padding" Value="{StaticResource MarketsHeaderTextPadding}"/>
+    </Style>
+
+    <Style x:Key="MarketsScrollViewer" TargetType="ScrollViewer">
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+    </Style>
+
+    <Style x:Key="MarketItemBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{StaticResource MarketItemBorderColor}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource MarketItemBorderThickness}"/>
+        <Setter Property="Padding" Value="{StaticResource MarketItemBorderPadding}"/>
+    </Style>
+
+    <Style x:Key="MarketItemPanel" TargetType="StackPanel" BasedOn="{StaticResource BaseStackPanel}">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style x:Key="MarketItemText" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource MarketsTextForeground}"/>
+    </Style>
+
+    <Style x:Key="MarketOpenLink" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlock}">
+        <Setter Property="Text" Value="Open"/>
+        <Setter Property="Foreground" Value="{StaticResource MarketsTextForeground}"/>
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
 </ResourceDictionary> 
