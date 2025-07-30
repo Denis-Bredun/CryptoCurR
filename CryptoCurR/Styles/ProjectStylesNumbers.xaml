@@ -25,6 +25,10 @@
     
     <sys:Double x:Key="PaginationSeparatorWidth">30</sys:Double>
     
+    <sys:Double x:Key="MainContentMaxWidth">1200</sys:Double>
+    <sys:Double x:Key="MainContentMinWidth">755</sys:Double>
+    <sys:Double x:Key="MainContentMinHeight">600</sys:Double>
+    
     <Thickness x:Key="ButtonPadding">8,4</Thickness>
     <Thickness x:Key="ButtonMargin">5,0</Thickness>
     <Thickness x:Key="TextBoxPadding">6,4</Thickness>

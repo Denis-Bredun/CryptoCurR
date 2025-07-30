@@ -133,6 +133,12 @@
         <Setter Property="Margin" Value="{StaticResource MainGridMargin}"/>
     </Style>
 
+    <Style x:Key="MainContentContainer" TargetType="Grid">
+        <Setter Property="MaxWidth" Value="{StaticResource MainContentMaxWidth}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="{StaticResource MainGridMargin}"/>
+    </Style>
+
     <Style x:Key="SearchTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="Width" Value="{StaticResource SearchTextBoxWidth}"/>
     </Style>
@@ -190,9 +196,12 @@
         <Setter Property="Title" Value="CryptoCurR"/>
         <Setter Property="Height" Value="{StaticResource MainWindowHeight}"/>
         <Setter Property="Width" Value="{StaticResource MainWindowWidth}"/>
+        <Setter Property="MinHeight" Value="{StaticResource MainContentMinHeight}"/>
+        <Setter Property="MinWidth" Value="{StaticResource MainContentMinWidth}"/>
         <Setter Property="Background" Value="{StaticResource PrimaryBackground}"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="ResizeMode" Value="CanResize"/>
     </Style>
 
 </ResourceDictionary> 

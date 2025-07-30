@@ -9,7 +9,7 @@
         mc:Ignorable="d">
 
     <Grid>
-        <Grid Style="{StaticResource MainGrid}">
+        <Grid Style="{StaticResource MainContentContainer}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
