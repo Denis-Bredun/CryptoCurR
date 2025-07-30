@@ -11,7 +11,6 @@
     <SolidColorBrush x:Key="ButtonDisabledBackground" Color="#1E1E1E"/>
     
     <SolidColorBrush x:Key="PrimaryForeground" Color="White"/>
-    <SolidColorBrush x:Key="SecondaryForeground" Color="#666"/>
     <SolidColorBrush x:Key="DisabledForeground" Color="#666"/>
     
     <SolidColorBrush x:Key="PrimaryBorder" Color="#444"/>
@@ -23,10 +22,6 @@
     
     <SolidColorBrush x:Key="SelectedBackground" Color="#333333"/>
     <SolidColorBrush x:Key="HoverBackground" Color="#2A2A2A"/>
-    
-    <SolidColorBrush x:Key="PositivePrice" Color="#4CAF50"/>
-    <SolidColorBrush x:Key="NegativePrice" Color="#F44336"/>
-    <SolidColorBrush x:Key="NeutralPrice" Color="#BDBDBD"/>
     
     <SolidColorBrush x:Key="LoadingOverlay" Color="#80000000"/>
     

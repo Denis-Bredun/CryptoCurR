@@ -133,7 +133,7 @@
         <Setter Property="Margin" Value="15"/>
     </Style>
 
-    <Style x:Key="SearchTextBox" TargetType="TextBox">
+    <Style x:Key="SearchTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="Width" Value="610"/>
     </Style>
 
@@ -182,7 +182,7 @@
     </Style>
 
     <Style x:Key="MainWindow" TargetType="Window">
-        <Setter Property="Title" Value="CryptoCurR - Cryptocurrencies"/>
+        <Setter Property="Title" Value="CryptoCurR"/>
         <Setter Property="Height" Value="750"/>
         <Setter Property="Width" Value="755"/>
         <Setter Property="Background" Value="{StaticResource PrimaryBackground}"/>
