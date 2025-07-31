@@ -19,6 +19,11 @@
                                      DefaultBrush="Brown"/>
             <converters:MarketChartConverter x:Key="MarketChartConverter"/>
             <converters:OhlcSeriesConverter x:Key="OhlcSeriesConverter"/>
+            <converters:TrustScoreToBrushConverter x:Key="TrustScoreToBrushConverter" />
+            <converters:TickerStatusConverter x:Key="TickerStatusConverter" />
+            <converters:SpreadToBrushConverter x:Key="SpreadToBrushConverter" />
+            <converters:DateTimeToTimeConverter x:Key="DateTimeToTimeConverter" />
+            <converters:MarketIncentivesConverter x:Key="MarketIncentivesConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

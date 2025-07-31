@@ -157,22 +157,40 @@
                     <StackPanel Grid.Row="0" 
                                 Style="{StaticResource MarketsHeader}">
                         <TextBlock Text="Market" 
-                                   Width="150" 
+                                   Width="{StaticResource MarketColumnWidth}" 
                                    Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Base" 
-                                   Width="50" 
+                                   Width="{StaticResource BaseColumnWidth}" 
                                    Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Target" 
-                                   Width="50" 
+                                   Width="{StaticResource TargetColumnWidth}" 
                                    Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Last" 
-                                   Width="100" 
+                                   Width="{StaticResource LastColumnWidth}" 
                                    Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="Volume" 
-                                   Width="100" 
+                                   Width="{StaticResource VolumeColumnWidth}" 
+                                   Style="{StaticResource MarketsHeaderText}"/>
+                        <TextBlock Text="BTC" 
+                                   Width="{StaticResource BtcColumnWidth}" 
+                                   Style="{StaticResource MarketsHeaderText}"/>
+                        <TextBlock Text="Spread" 
+                                   Width="{StaticResource SpreadColumnWidth}" 
+                                   Style="{StaticResource MarketsHeaderText}"/>
+                        <TextBlock Text="Trust" 
+                                   Width="{StaticResource TrustColumnWidth}" 
+                                   Style="{StaticResource MarketsHeaderText}"/>
+                        <TextBlock Text="NoAnomaly" 
+                                   Width="{StaticResource StatusColumnWidth}" 
+                                   Style="{StaticResource MarketsHeaderText}"/>
+                        <TextBlock Text="Last Trade" 
+                                   Width="{StaticResource LastTradeColumnWidth}" 
+                                   Style="{StaticResource MarketsHeaderText}"/>
+                        <TextBlock Text="Incentives" 
+                                   Width="{StaticResource IncentivesColumnWidth}" 
                                    Style="{StaticResource MarketsHeaderText}"/>
                         <TextBlock Text="" 
-                                   Width="40"/>
+                                   Width="{StaticResource LinkColumnWidth}"/>
                     </StackPanel>
 
                     <ScrollViewer Grid.Row="1" 
@@ -183,21 +201,47 @@
                                     <Border Style="{StaticResource MarketItemBorder}">
                                         <StackPanel Style="{StaticResource MarketItemPanel}">
                                             <TextBlock Text="{Binding Market.Name}" 
-                                                       Width="150" 
+                                                       Width="{StaticResource MarketColumnWidth}" 
                                                        Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Base}" 
-                                                       Width="50" 
+                                                       Width="{StaticResource BaseColumnWidth}" 
                                                        Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Target}" 
-                                                       Width="50" 
+                                                       Width="{StaticResource TargetColumnWidth}" 
                                                        Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Last, StringFormat='{}{0:F2}'}" 
-                                                       Width="100" 
+                                                       Width="{StaticResource LastColumnWidth}" 
                                                        Style="{StaticResource MarketItemText}"/>
                                             <TextBlock Text="{Binding Volume, StringFormat='{}{0:N0}'}" 
-                                                       Width="100" 
+                                                       Width="{StaticResource VolumeColumnWidth}" 
                                                        Style="{StaticResource MarketItemText}"/>
-                                            <TextBlock Width="40" 
+                                            <TextBlock Text="{Binding ConvertedLast.Btc, StringFormat='{}{0:F8}'}" 
+                                                       Width="{StaticResource BtcColumnWidth}" 
+                                                       Style="{StaticResource MarketItemText}"/>
+                                            <TextBlock Text="{Binding BidAskSpreadPercentage, StringFormat='{}{0:F2}%'}" 
+                                                       Width="{StaticResource SpreadColumnWidth}" 
+                                                       Style="{StaticResource MarketItemText}"
+                                                       Foreground="{Binding BidAskSpreadPercentage, Converter={StaticResource SpreadToBrushConverter}}"/>
+                                            <TextBlock Text="{Binding TrustScore}" 
+                                                       Width="{StaticResource TrustColumnWidth}" 
+                                                       Style="{StaticResource MarketItemText}"
+                                                       Foreground="{Binding TrustScore, Converter={StaticResource TrustScoreToBrushConverter}}"/>
+                                            <TextBlock Width="{StaticResource StatusColumnWidth}" 
+                                                       Style="{StaticResource MarketItemText}">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource TickerStatusConverter}">
+                                                        <Binding Path="IsAnomaly" />
+                                                        <Binding Path="IsStale" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding LastTradedAt, Converter={StaticResource DateTimeToTimeConverter}}" 
+                                                       Width="{StaticResource LastTradeColumnWidth}" 
+                                                       Style="{StaticResource MarketItemText}"/>
+                                            <TextBlock Text="{Binding Market.HasTradingIncentive, Converter={StaticResource MarketIncentivesConverter}}" 
+                                                       Width="{StaticResource IncentivesColumnWidth}" 
+                                                       Style="{StaticResource MarketItemText}"/>
+                                            <TextBlock Width="{StaticResource LinkColumnWidth}" 
                                                        Style="{StaticResource MarketOpenLink}">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">

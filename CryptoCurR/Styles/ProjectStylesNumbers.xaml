@@ -25,12 +25,12 @@
     <sys:Double x:Key="TimeframeButtonMinWidth">40</sys:Double>
     
     <sys:Double x:Key="MainWindowHeight">800</sys:Double>
-    <sys:Double x:Key="MainWindowWidth">755</sys:Double>
+    <sys:Double x:Key="MainWindowWidth">880</sys:Double>
     
     <sys:Double x:Key="PaginationSeparatorWidth">30</sys:Double>
     
     <sys:Double x:Key="MainContentMaxWidth">1200</sys:Double>
-    <sys:Double x:Key="MainContentMinWidth">755</sys:Double>
+    <sys:Double x:Key="MainContentMinWidth">880</sys:Double>
     <sys:Double x:Key="MainContentMinHeight">600</sys:Double>
     <sys:Double x:Key="MarketsMinHeight">200</sys:Double>
     <sys:Double x:Key="MarketsMaxHeight">400</sys:Double>
@@ -62,5 +62,21 @@
     <Thickness x:Key="MarketsHeaderTextPadding">5</Thickness>
     <Thickness x:Key="MarketItemBorderPadding">5</Thickness>
     <Thickness x:Key="MarketItemBorderThickness">0,0,0,1</Thickness>
+    
+    <sys:Double x:Key="MarketColumnWidth">130</sys:Double>
+    <sys:Double x:Key="BaseColumnWidth">45</sys:Double>
+    <sys:Double x:Key="TargetColumnWidth">45</sys:Double>
+    <sys:Double x:Key="LastColumnWidth">75</sys:Double>
+    <sys:Double x:Key="VolumeColumnWidth">75</sys:Double>
+    <sys:Double x:Key="BtcColumnWidth">65</sys:Double>
+    <sys:Double x:Key="SpreadColumnWidth">55</sys:Double>
+    <sys:Double x:Key="TrustColumnWidth">45</sys:Double>
+    <sys:Double x:Key="StatusColumnWidth">45</sys:Double>
+    <sys:Double x:Key="LastTradeColumnWidth">65</sys:Double>
+    <sys:Double x:Key="IncentivesColumnWidth">55</sys:Double>
+    <sys:Double x:Key="LinkColumnWidth">40</sys:Double>
+    
+    <sys:Double x:Key="SpreadGreenThreshold">0.5</sys:Double>
+    <sys:Double x:Key="SpreadOrangeThreshold">2.0</sys:Double>
     
 </ResourceDictionary> 

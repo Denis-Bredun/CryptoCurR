@@ -186,8 +186,7 @@ namespace CryptoCurR.Models
     {
         public string? Name { get; set; }
         public string? Identifier { get; set; }
-        public bool? HasTradingIncentive { get; set; }
-        public bool? HasReferralParams { get; set; }
+        public bool HasTradingIncentive { get; set; }
     }
 
     public class ConvertedLast
