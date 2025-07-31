@@ -176,6 +176,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "SimplePriceEndpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/simple/price?ids=bitcoin,ethereum&vs_currencies=usd,bt",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"simple",
+						"price"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "bitcoin,ethereum"
+						},
+						{
+							"key": "vs_currencies",
+							"value": "usd,bt"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
