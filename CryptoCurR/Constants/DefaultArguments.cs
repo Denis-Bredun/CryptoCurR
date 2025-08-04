@@ -16,6 +16,7 @@ namespace CryptoCurR.Constants
         public const bool DefaultIsLineChart = true;
         public const string DateFormat = "MM/dd/yyyy HH:mm";
         public const int DefaultPricePrecision = 18;
+        public const decimal DefaultConverterAmount = 1.0m;
         
         public static List<int> AvailableTimeframes { get; } = new() { 1, 7, 30 };
         
