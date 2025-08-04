@@ -183,7 +183,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/simple/price?ids=bitcoin,ethereum&vs_currencies=usd,bt",
+					"raw": "{{baseURL}}/simple/price?ids=bitcoin,ethereum&vs_currencies=btc&precision=18",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -198,7 +198,11 @@
 						},
 						{
 							"key": "vs_currencies",
-							"value": "usd,bt"
+							"value": "btc"
+						},
+						{
+							"key": "precision",
+							"value": "18"
 						}
 					]
 				}

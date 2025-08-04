@@ -22,5 +22,10 @@ namespace CryptoCurR.Interfaces
             string id, 
             int days = DefaultArguments.DefaultPeriodInDays);
         Task<CoinTickersResponse?> GetTickersAsync(string id);
+        Task<SimplePriceModel?> GetSimplePriceAsync(
+            string toId, 
+            string fromId, 
+            string toSymbol, 
+            int precision = DefaultArguments.DefaultPricePrecision);
     }
 }

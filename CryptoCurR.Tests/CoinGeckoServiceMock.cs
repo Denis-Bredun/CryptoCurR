@@ -14,102 +14,96 @@ namespace CryptoCurR.Tests
         ICoinGeckoClient client, 
         ICoinGeckoParser parser,
         INetworkCheckService networkCheckService) : ICoinGeckoService
-    {
+    {       
         public async Task<List<CoinMarketModel>?> GetTopCoinsAsync(
             int perPage = DefaultArguments.CoinsMarketsPerPage,
             int page = DefaultArguments.CoinsMarketsDefaultPage)
         {
-            if (!await networkCheckService.IsInternetAvailableAsync())
-                return null;
-
-            try
-            {
-                var json = await client.GetTopCoinsJsonAsync(perPage, page);
-                return parser.ParseTopCoins(json);
-            }
-            catch (HttpRequestException)
-            {
-                throw;
-            }
-            catch (JsonException)
-            {
-                throw;
-            }
+            return await ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetTopCoinsJsonAsync(perPage, page);
+                    return parser.ParseTopCoins(json);
+                });
         }
 
         public async Task<CoinDetailModel?> GetCoinDetailsAsync(string id)
         {
-            if (!await networkCheckService.IsInternetAvailableAsync())
-                return null;
-
-            try
-            {
-                var json = await client.GetCoinDetailsJsonAsync(id);
-                return parser.ParseCoinDetails(json);
-            }
-            catch (HttpRequestException)
-            {
-                throw;
-            }
-            catch (JsonException)
-            {
-                throw;
-            }
+            return await ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetCoinDetailsJsonAsync(id);
+                    return parser.ParseCoinDetails(json);
+                });
         }
 
         public async Task<CoinSearchResult?> SearchCoinsAsync(string query)
         {
-            if (!await networkCheckService.IsInternetAvailableAsync())
-                return null;
-
-            try
-            {
-                var json = await client.GetSearchJsonAsync(query);
-                return parser.ParseSearchResult(json);
-            }
-            catch (HttpRequestException)
-            {
-                throw;
-            }
-            catch (JsonException)
-            {
-                throw;
-            }
+            return await ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetSearchJsonAsync(query);
+                    return parser.ParseSearchResult(json);
+                });
         }
 
         public async Task<MarketChartData?> GetMarketChartAsync(
             string id,
             int days = DefaultArguments.DefaultPeriodInDays)
         {
-            if (!await networkCheckService.IsInternetAvailableAsync())
-                return null;
-
-            try
-            {
-                var json = await client.GetMarketChartJsonAsync(id, days);
-                return parser.ParseMarketChart(json);
-            }
-            catch (HttpRequestException)
-            {
-                throw;
-            }
-            catch (JsonException)
-            {
-                throw;
-            }
+            return await ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetMarketChartJsonAsync(id, days);
+                    return parser.ParseMarketChart(json);
+                });
         }
 
         public async Task<List<OhlcCandle>?> GetOhlcAsync(
             string id,
             int days = DefaultArguments.DefaultPeriodInDays)
         {
+            return await ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetOhlcJsonAsync(id, days);
+                    return parser.ParseOhlc(json);
+                });
+        }
+
+        public async Task<CoinTickersResponse?> GetTickersAsync(string id)
+        {
+            return await ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetTickersJsonAsync(id);
+                    return parser.ParseTickers(json);
+                });
+        }
+
+        public async Task<SimplePriceModel?> GetSimplePriceAsync(
+            string toId, 
+            string fromId, 
+            string toSymbol, 
+            int precision = DefaultArguments.DefaultPricePrecision)
+        {
+            return await ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetSimplePriceJsonAsync(toId, fromId, toSymbol, precision);
+                    return parser.ParseSimplePrice(json);
+                });
+        }
+
+        private async Task<T?> ExecuteWithHandlingAsync<T>(Func<Task<T?>> action)
+            where T : class
+        {
             if (!await networkCheckService.IsInternetAvailableAsync())
                 return null;
 
             try
             {
-                var json = await client.GetOhlcJsonAsync(id, days);
-                return parser.ParseOhlc(json);
+                return await action();
             }
             catch (HttpRequestException)
             {
@@ -123,26 +117,6 @@ namespace CryptoCurR.Tests
                 ex is OverflowException ||
                 ex is IndexOutOfRangeException ||
                 ex is ArgumentOutOfRangeException)
-            {
-                throw;
-            }
-        }
-
-        public async Task<CoinTickersResponse?> GetTickersAsync(string id)
-        {
-            if (!await networkCheckService.IsInternetAvailableAsync())
-                return null;
-
-            try
-            {
-                var json = await client.GetTickersJsonAsync(id);
-                return parser.ParseTickers(json);
-            }
-            catch (HttpRequestException)
-            {
-                throw;
-            }
-            catch (JsonException)
             {
                 throw;
             }

@@ -61,6 +61,16 @@ namespace CryptoCurR.Services
             return await SendAndCheckGetRequestAsync(url);
         }
 
+        public async Task<string> GetSimplePriceJsonAsync(
+            string toId, 
+            string fromId, 
+            string toSymbol, 
+            int precision = DefaultArguments.DefaultPricePrecision)
+        {
+            var url = CoinGeckoApi.GetSimplePriceUrl(toId, fromId, toSymbol, precision);
+            return await SendAndCheckGetRequestAsync(url);
+        }
+
         private async Task<string> SendAndCheckGetRequestAsync(string url)
         {
             var response = await _httpClient.GetAsync(url);

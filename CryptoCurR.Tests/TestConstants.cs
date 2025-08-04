@@ -14,5 +14,11 @@ namespace CryptoCurR.Tests
         public const string InvalidCoinId = "invalid_coin_id";
         public const string AnotherInvalidCoinId = "some_invalid_id";
         public const string EmptyCoinId = "";
+
+        public const string ValidToId = "bitcoin";
+        public const string ValidFromId = "ethereum";
+        public const string ValidToSymbol = "btc";
+        public const string InvalidToId = "invalid_id";
+        public const string InvalidFromId = "another_invalid_id";
     }
 }

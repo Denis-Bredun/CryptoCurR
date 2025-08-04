@@ -24,6 +24,8 @@ namespace CryptoCurR.Constants
 
         public const string TickersEndpoint = "/coins/{0}/tickers";
 
+        public const string SimplePriceEndpoint = "/simple/price";
+
         public static string GetMarketsUrl(
             string vsCurrency = DefaultArguments.VsCurrency, 
             int perPage = DefaultArguments.CoinsMarketsPerPage, 
@@ -61,6 +63,15 @@ namespace CryptoCurR.Constants
         public static string GetTickersUrl(string id)
         {
             return string.Format($"{BaseAPIUrl}{TickersEndpoint}", id);
+        }
+
+        public static string GetSimplePriceUrl(
+            string toId, 
+            string fromId, 
+            string toSymbol, 
+            int precision = DefaultArguments.DefaultPricePrecision)
+        {
+            return $"{BaseAPIUrl}{SimplePriceEndpoint}?ids={toId},{fromId}&vs_currencies={toSymbol}&precision={precision}";
         }
     }
 }

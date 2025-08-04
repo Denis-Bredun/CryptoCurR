@@ -108,6 +108,13 @@ namespace CryptoCurR.Tests.IntegrationTests
             var ex = await Record.ExceptionAsync(() => _service.GetTickersAsync(TestConstants.ValidCoinId));
             Assert.Null(ex);
         }
+
+        [Fact]
+        public async Task GetSimplePriceAsync_Should_Succeed_For_ValidIds()
+        {
+            var ex = await Record.ExceptionAsync(() => _service.GetSimplePriceAsync(TestConstants.ValidToId, TestConstants.ValidFromId, TestConstants.ValidToSymbol));
+            Assert.Null(ex);
+        }
     }
 
 }

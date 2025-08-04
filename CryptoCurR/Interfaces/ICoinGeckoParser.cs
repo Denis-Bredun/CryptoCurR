@@ -10,5 +10,6 @@ namespace CryptoCurR.Interfaces
         CoinSearchResult? ParseSearchResult(string json);
         CoinTickersResponse? ParseTickers(string json);
         List<CoinMarketModel>? ParseTopCoins(string json);
+        SimplePriceModel? ParseSimplePrice(string json);
     }
 }

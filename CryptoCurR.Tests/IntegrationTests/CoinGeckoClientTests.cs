@@ -64,6 +64,13 @@ namespace CryptoCurR.Tests.IntegrationTests
         }
 
         [Fact]
+        public async Task GetSimplePriceJsonAsync_Should_Succeed_For_ValidIds()
+        {
+            var result = await _client.GetSimplePriceJsonAsync(TestConstants.ValidToId, TestConstants.ValidFromId, TestConstants.ValidToSymbol);
+            Assert.False(string.IsNullOrWhiteSpace(result));
+        }
+
+        [Fact]
         public async Task GetCoinDetailsJsonAsync_Should_Fail_For_InvalidId()
         {
             await Assert.ThrowsAsync<HttpRequestException>(async () =>
@@ -96,6 +103,15 @@ namespace CryptoCurR.Tests.IntegrationTests
             await Assert.ThrowsAsync<HttpRequestException>(async () =>
             {
                 await _client.GetTickersJsonAsync(TestConstants.EmptyCoinId);
+            });
+        }
+
+        [Fact]
+        public async Task GetSimplePriceJsonAsync_Should_Fail_For_InvalidIds()
+        {
+            await Assert.ThrowsAsync<HttpRequestException>(async () =>
+            {
+                await _client.GetSimplePriceJsonAsync(TestConstants.InvalidToId, TestConstants.InvalidFromId, TestConstants.ValidToSymbol);
             });
         }
     }

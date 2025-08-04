@@ -86,6 +86,21 @@ namespace CryptoCurR.Services
                 }, context);
         }
 
+        public Task<SimplePriceModel?> GetSimplePriceAsync(
+            string toId, 
+            string fromId, 
+            string toSymbol, 
+            int precision = DefaultArguments.DefaultPricePrecision)
+        {
+            string context = $"getting simple price for '{fromId}' to '{toId}' in '{toSymbol}'";
+            return ExecuteWithHandlingAsync(
+                async () =>
+                {
+                    var json = await client.GetSimplePriceJsonAsync(toId, fromId, toSymbol, precision);
+                    return parser.ParseSimplePrice(json);
+                }, context);
+        }
+
         private async Task<T?> ExecuteWithHandlingAsync<T>(Func<Task<T?>> action, string context, Func<Exception, string>? getErrorNotification = null)
             where T : class
         {

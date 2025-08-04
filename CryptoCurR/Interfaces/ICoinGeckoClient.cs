@@ -20,6 +20,11 @@ namespace CryptoCurR.Interfaces
         Task<string> GetOhlcJsonAsync(
             string id, 
             int days = DefaultArguments.DefaultPeriodInDays);        
-        Task<string> GetTickersJsonAsync(string id);        
+        Task<string> GetTickersJsonAsync(string id);
+        Task<string> GetSimplePriceJsonAsync(
+            string toId, 
+            string fromId, 
+            string toSymbol, 
+            int precision = DefaultArguments.DefaultPricePrecision);
     }
 }
