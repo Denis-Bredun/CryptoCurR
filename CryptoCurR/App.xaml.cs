@@ -79,6 +79,7 @@ namespace CryptoCurR
             services.AddScoped<ICryptoListService, CryptoListService>();
             services.AddScoped<ICoinDetailsMapper, CoinDetailsMapper>();
             services.AddScoped<ICoinDetailsLoader, CoinDetailsLoader>();
+            services.AddScoped<ICurrencyConverterService, CurrencyConverterService>();
             services.AddScoped<IViewModelFactory, ViewModelFactory>();
             services.AddScoped<INavigationService, NavigationService>();
 
@@ -89,6 +90,8 @@ namespace CryptoCurR
             services.AddScoped<CoinDetailsViewModel>();
             services.AddScoped<CoinDetailsPage>();
             services.AddSingleton<NavigationViewModel>();
+
+            services.AddSingleton<CurrencyConverterViewModel>();
 
             services.AddSingleton(s => new NavigationWrapper()
             {

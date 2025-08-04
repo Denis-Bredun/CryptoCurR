@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace CryptoCurR.ViewModels
 {
     public partial class CurrencyConverterViewModel(
-            ICoinGeckoService coinGeckoService) : ObservableObject
+            ICurrencyConverterService currencyConverterService) : ObservableObject
     {
         [ObservableProperty]
         private ObservableCollection<CoinMarketModel> _fromCurrencies = new();
@@ -65,7 +65,7 @@ namespace CryptoCurR.ViewModels
         {
             IsLoading = true;
 
-            var coins = await coinGeckoService.GetTopCoinsAsync(perPage: 250);
+            var coins = await currencyConverterService.LoadCurrenciesAsync();
             FromCurrencies.Clear();
             ToCurrencies.Clear();
 
@@ -88,13 +88,11 @@ namespace CryptoCurR.ViewModels
         {
             IsLoading = true;
 
-            var simplePrice = await coinGeckoService.GetSimplePriceAsync(
+            ConvertedAmount = await currencyConverterService.ConvertCurrencyAsync(
                 SelectedFromCurrency.Id,
                 SelectedToCurrency.Id,
-                SelectedToCurrency.Symbol);
-
-            var rate = simplePrice.Prices[SelectedFromCurrency.Id][SelectedToCurrency.Symbol];
-            ConvertedAmount = Amount * rate;
+                SelectedToCurrency.Symbol,
+                Amount);
 
             IsLoading = false;
         }
@@ -104,15 +102,11 @@ namespace CryptoCurR.ViewModels
         {
             _isSwitching = true;
 
-            var temp = SelectedFromCurrency;
-            SelectedFromCurrency = SelectedToCurrency;
-            SelectedToCurrency = temp;
+            (SelectedFromCurrency, SelectedToCurrency) = (SelectedToCurrency, SelectedFromCurrency);
 
             if (ConvertedAmount > 0)
             {
-                var tempAmount = Amount;
-                Amount = ConvertedAmount;
-                ConvertedAmount = tempAmount;
+                (Amount, ConvertedAmount) = (ConvertedAmount, Amount);
             }
             else
             {
