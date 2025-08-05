@@ -2,6 +2,8 @@
 
 A modern cryptocurrency desktop application built with WPF (.NET 8.0), featuring real-time cryptocurrency data, detailed coin analytics, interactive charts, and currency conversion capabilities. The application integrates with the CoinGecko API to provide comprehensive cryptocurrency market information.
 
+---
+
 ## Features
 
 ### Core Functionality
@@ -11,30 +13,7 @@ A modern cryptocurrency desktop application built with WPF (.NET 8.0), featuring
 - **Interactive Charts**: Line charts and candlestick charts with multiple timeframe options (1d, 7d, 30d)
 - **Currency Converter**: Convert between different cryptocurrencies with real-time exchange rates
 
-## Prerequisites
-
-Before running this project, ensure you have the following installed:
-
-- **Visual Studio 2022** (Community, Professional, or Enterprise)
-- **.NET desktop development** (workload from Visual Studio 2022 Installer; includes WPF)
-- **Git** (for cloning the repository)
-- **Internet connection** (required for CoinGecko API access)
-
-## Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd CryptoCurR
-   ```
-
-2. **Open the solution in Visual Studio 2022**
-   - Open `CryptoCurR.sln` in Visual Studio 2022
-   - Wait for the solution to load and restore NuGet packages
-
-3. **Verify dependencies**
-   - Ensure all NuGet packages are restored
-   - Check that the solution builds successfully (Build → Build Solution)
+---
 
 ## API Integration
 
@@ -91,9 +70,38 @@ The application utilizes the following CoinGecko API endpoints:
 
 All price data is provided in **USD** by default, with support for other fiat currencies through the `vs_currency` parameter.
 
-## Running the Application
+---
 
-### Local Development
+## Prerequisites
+
+Before running this project, ensure you have the following installed:
+
+- **Visual Studio 2022** (Community, Professional, or Enterprise)
+- **.NET desktop development** (workload from Visual Studio 2022 Installer; includes WPF)
+- **Git** (for cloning the repository)
+- **Internet connection** (required for CoinGecko API access)
+
+---
+
+## Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd CryptoCurR
+   ```
+
+2. **Open the solution in Visual Studio 2022**
+   - Open `CryptoCurR.sln` in Visual Studio 2022
+   - Wait for the solution to load and restore NuGet packages
+
+3. **Verify dependencies**
+   - Ensure all NuGet packages are restored
+   - Check that the solution builds successfully (Build → Build Solution)
+
+---
+
+## Running the Application
 
 1. **Set the startup project**
    - Right-click on `CryptoCurR` in Solution Explorer
@@ -108,9 +116,11 @@ All price data is provided in **USD** by default, with support for other fiat cu
    - **Coin Details**: Double-click any coin to view detailed information and charts
    - **Currency Converter**: Click "Currency Converter" button to convert between cryptocurrencies
 
+---
+
 ## Testing
 
-The project includes comprehensive integrated testing:
+The project includes comprehensive integration testing with real API calls to CoinGecko, covering all major functionality including market data retrieval, coin details, search functionality, historical charts, OHLC data, and currency conversion. Tests are built using xUnit and Moq frameworks.
 
 ### Running Tests
 1. Open Test Explorer in Visual Studio (Test → Test Explorer)
@@ -119,6 +129,10 @@ The project includes comprehensive integrated testing:
    ```bash
    dotnet test
    ```
+
+**Note**: Due to CoinGecko API rate limits (5-15 calls per minute), running all tests simultaneously may result in some failures. If this occurs, wait 2-3 minutes and re-run failed tests individually.
+
+---
 
 ## Troubleshooting
 
@@ -151,6 +165,8 @@ If you encounter issues:
 2. Review the console output for error messages
 3. Verify all prerequisites are installed correctly
 4. Ensure stable internet connection for API access
+
+---
 
 ## License
 
