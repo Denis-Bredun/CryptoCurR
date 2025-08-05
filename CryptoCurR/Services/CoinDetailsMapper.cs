@@ -54,5 +54,15 @@ namespace CryptoCurR.Services
                 new ObservableCollection<OhlcCandle>(dto.OhlcCandles ?? new())
             );
         }
+
+        public List<CurrencyConverterModel> MapToCurrencyConverterModels(List<CoinMarketModel> coinMarketModels)
+        {
+            return coinMarketModels?.Select(coin => new CurrencyConverterModel
+            {
+                Id = coin.Id,
+                Symbol = coin.Symbol,
+                Image = coin.Image
+            }).ToList() ?? new List<CurrencyConverterModel>();
+        }
     }
 }

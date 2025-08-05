@@ -106,5 +106,13 @@ namespace CryptoCurR.ViewModels
             await navigationService.NavigateToCoinDetailsAsync(selectedCoin?.Id);
             IsLoading = false;
         }
+
+        [RelayCommand]
+        private async Task NavigateToCurrencyConverterAsync()
+        {
+            IsLoading = true;
+            await navigationService.NavigateToCurrencyConverterAsync();
+            IsLoading = false;
+        }
     }
 }

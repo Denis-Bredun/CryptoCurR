@@ -24,6 +24,8 @@
                         Command="{Binding SearchCoinsCommand}" />
                 <Button Content="Reset" 
                         Command="{Binding ResetCommand}" />
+                <Button Content="Currency Converter" 
+                        Command="{Binding NavigateToCurrencyConverterCommand}" />
             </StackPanel>
 
             <Grid Grid.Row="1">

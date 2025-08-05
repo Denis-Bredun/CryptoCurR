@@ -11,5 +11,6 @@ namespace CryptoCurR.Navigation
     {
         Task<MainPageViewModel> CreateMainPageViewModel();
         Task<CoinDetailsViewModel> CreateCoinDetailsViewModel(string coinId);
+        Task<CurrencyConverterViewModel> CreateCurrencyConverterViewModel();
     }
 }

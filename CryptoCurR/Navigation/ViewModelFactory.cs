@@ -23,5 +23,12 @@ namespace CryptoCurR.Navigation
             await vm.InitializeAsync(coinId);
             return vm;
         }
+
+        public async Task<CurrencyConverterViewModel> CreateCurrencyConverterViewModel()
+        {
+            var vm = provider.GetRequiredService<CurrencyConverterViewModel>();
+            await vm.InitializeAsync();
+            return vm;
+        }
     }
 }

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CryptoCurR.Constants;
 using CryptoCurR.Interfaces;
 using CryptoCurR.Models;
+using CryptoCurR.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,19 +13,20 @@ using System.Threading.Tasks;
 namespace CryptoCurR.ViewModels
 {
     public partial class CurrencyConverterViewModel(
-            ICurrencyConverterService currencyConverterService) : ObservableObject
+            ICurrencyConverterService currencyConverterService,
+            INavigationService navigationService) : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<CoinMarketModel> _fromCurrencies = new();
+        private ObservableCollection<CurrencyConverterModel> _fromCurrencies = new();
 
         [ObservableProperty]
-        private ObservableCollection<CoinMarketModel> _toCurrencies = new();
+        private ObservableCollection<CurrencyConverterModel> _toCurrencies = new();
 
         [ObservableProperty]
-        private CoinMarketModel? _selectedFromCurrency;
+        private CurrencyConverterModel? _selectedFromCurrency;
 
         [ObservableProperty]
-        private CoinMarketModel? _selectedToCurrency;
+        private CurrencyConverterModel? _selectedToCurrency;
 
         [ObservableProperty]
         private decimal _amount = DefaultArguments.DefaultConverterAmount;
@@ -39,13 +41,13 @@ namespace CryptoCurR.ViewModels
 
         partial void OnAmountChanged(decimal value)
         {
-            if (CanConvert())
+            if (CanConvertWithSwitchCheck())
             {
                 _ = ConvertAsync();
             }
         }
 
-        partial void OnSelectedFromCurrencyChanged(CoinMarketModel? value)
+        partial void OnSelectedFromCurrencyChanged(CurrencyConverterModel? value)
         {
             if (CanConvertWithSwitchCheck())
             {
@@ -53,7 +55,7 @@ namespace CryptoCurR.ViewModels
             }
         }
 
-        partial void OnSelectedToCurrencyChanged(CoinMarketModel? value)
+        partial void OnSelectedToCurrencyChanged(CurrencyConverterModel? value)
         {
             if (CanConvertWithSwitchCheck())
             {
@@ -75,7 +77,7 @@ namespace CryptoCurR.ViewModels
                 ToCurrencies.Add(coin);
             }
 
-            SelectedFromCurrency = FromCurrencies.First();
+            SelectedFromCurrency = FromCurrencies.FirstOrDefault();
             SelectedToCurrency = ToCurrencies.Skip(1).FirstOrDefault();
 
             await ConvertAsync();
@@ -89,9 +91,9 @@ namespace CryptoCurR.ViewModels
             IsLoading = true;
 
             ConvertedAmount = await currencyConverterService.ConvertCurrencyAsync(
-                SelectedFromCurrency.Id,
-                SelectedToCurrency.Id,
-                SelectedToCurrency.Symbol,
+                SelectedFromCurrency?.Id,
+                SelectedToCurrency?.Id,
+                SelectedToCurrency?.Symbol,
                 Amount);
 
             IsLoading = false;
@@ -103,17 +105,19 @@ namespace CryptoCurR.ViewModels
             _isSwitching = true;
 
             (SelectedFromCurrency, SelectedToCurrency) = (SelectedToCurrency, SelectedFromCurrency);
+            (Amount, ConvertedAmount) = (RoundToFourDecimals(ConvertedAmount), RoundToFourDecimals(Amount));
 
-            if (ConvertedAmount > 0)
-            {
-                (Amount, ConvertedAmount) = (ConvertedAmount, Amount);
-            }
-            else
-            {
-                _ = ConvertAsync();
-            }
+            _ = ConvertAsync();
 
             _isSwitching = false;
+        }
+
+        [RelayCommand]
+        private async Task GoBackAsync()
+        {
+            IsLoading = true;
+            await navigationService.NavigateToMainAsync();
+            IsLoading = false;
         }
 
         private bool CanConvert()
@@ -124,6 +128,11 @@ namespace CryptoCurR.ViewModels
         private bool CanConvertWithSwitchCheck()
         {
             return !_isSwitching && CanConvert();
+        }
+
+        private static decimal RoundToFourDecimals(decimal value)
+        {
+            return Math.Round(value, 6);
         }
     }
 } 

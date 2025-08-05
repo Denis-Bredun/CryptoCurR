@@ -85,13 +85,13 @@ namespace CryptoCurR
 
             services.AddSingleton(CreateNotifier);
             services.AddSingleton<NavigationStore>();
+            services.AddSingleton<NavigationViewModel>();
             services.AddScoped<MainPageViewModel>();
             services.AddScoped<MainPage>();
             services.AddScoped<CoinDetailsViewModel>();
             services.AddScoped<CoinDetailsPage>();
-            services.AddSingleton<NavigationViewModel>();
-
-            services.AddSingleton<CurrencyConverterViewModel>();
+            services.AddScoped<CurrencyConverterPage>();
+            services.AddScoped<CurrencyConverterViewModel>();
 
             services.AddSingleton(s => new NavigationWrapper()
             {

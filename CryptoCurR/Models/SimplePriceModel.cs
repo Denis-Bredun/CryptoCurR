@@ -1,7 +1,6 @@
 namespace CryptoCurR.Models
 {
-    public class SimplePriceModel
+    public class SimplePriceModel : Dictionary<string, Dictionary<string, decimal>>
     {
-        public Dictionary<string, Dictionary<string, decimal>> Prices { get; set; } = new();
     }
 } 

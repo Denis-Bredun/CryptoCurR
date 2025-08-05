@@ -21,5 +21,11 @@ namespace CryptoCurR.Navigation
             var detailsVm = await viewModelFactory.CreateCoinDetailsViewModel(coinId);
             navigationStore.CurrentViewModel = detailsVm;
         }
+
+        public async Task NavigateToCurrencyConverterAsync()
+        {
+            var converterVm = await viewModelFactory.CreateCurrencyConverterViewModel();
+            navigationStore.CurrentViewModel = converterVm;
+        }
     }
 }

@@ -79,4 +79,30 @@
     <sys:Double x:Key="SpreadGreenThreshold">0.5</sys:Double>
     <sys:Double x:Key="SpreadOrangeThreshold">2.0</sys:Double>
     
+    <sys:Double x:Key="ConverterTitleFontSize">28</sys:Double>
+    <sys:Double x:Key="ConverterSubtitleFontSize">14</sys:Double>
+    <sys:Double x:Key="CurrencyItemIconSize">24</sys:Double>
+    <sys:Double x:Key="AmountTextBoxFontSize">18</sys:Double>
+    <sys:Double x:Key="SwitchButtonSize">50</sys:Double>
+    <sys:Double x:Key="SwitchButtonFontSize">20</sys:Double>
+    <sys:Double x:Key="ConvertedAmountFontSize">18</sys:Double>
+    
+    <Thickness x:Key="ComboBoxBorderThickness">1</Thickness>
+    
+    <Thickness x:Key="ConverterHeaderMargin">0,0,0,20</Thickness>
+    <Thickness x:Key="ConverterTitleMargin">0,0,0,5</Thickness>
+    <Thickness x:Key="ConverterSubtitleMargin">0,0,0,0</Thickness>
+    <Thickness x:Key="ConverterMainGridMargin">0,0,0,20</Thickness>
+    <Thickness x:Key="CurrencyPanelMargin">10</Thickness>
+    <Thickness x:Key="CurrencyLabelMargin">0,0,0,5</Thickness>
+    <Thickness x:Key="ComboBoxPadding">8,6</Thickness>
+    <Thickness x:Key="ComboBoxMargin">0,0,0,10</Thickness>
+    <Thickness x:Key="CurrencyItemIconMargin">0,0,8,0</Thickness>
+    <Thickness x:Key="CurrencyItemNameMargin">0,0,5,0</Thickness>
+    <Thickness x:Key="CurrencyItemSymbolMargin">0,0,0,0</Thickness>
+    <Thickness x:Key="AmountTextBoxMargin">0,0,0,0</Thickness>
+    <Thickness x:Key="SwitchButtonMargin">10,0</Thickness>
+    <Thickness x:Key="ConvertedAmountMargin">0,0,0,0</Thickness>
+    <Thickness x:Key="ConvertedAmountPadding">8,6</Thickness>
+    
 </ResourceDictionary> 

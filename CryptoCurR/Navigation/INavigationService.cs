@@ -10,5 +10,6 @@ namespace CryptoCurR.Navigation
     {
         Task NavigateToMainAsync();
         Task NavigateToCoinDetailsAsync(string coinId);
+        Task NavigateToCurrencyConverterAsync();
     }
 }

@@ -56,14 +56,14 @@ namespace CryptoCurR.Services
                 .ToList();
         }
 
-        public SimplePriceModel? ParseSimplePrice(string json)
-        {
-            return JsonConvert.DeserializeObject<SimplePriceModel>(json, _settings);
-        }
-
         private DateTime FromUnixTimeMilliseconds(long ms)
         {
             return DateTimeOffset.FromUnixTimeMilliseconds(ms).UtcDateTime;
+        }
+
+        public SimplePriceModel? ParseSimplePrice(string json)
+        {
+            return JsonConvert.DeserializeObject<SimplePriceModel>(json, _settings) ?? new();
         }
     }
 }

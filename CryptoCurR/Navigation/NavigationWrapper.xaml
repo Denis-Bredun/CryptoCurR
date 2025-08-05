@@ -18,6 +18,10 @@
         <DataTemplate DataType="{x:Type vm:CoinDetailsViewModel}">
             <views:CoinDetailsPage />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:CurrencyConverterViewModel}">
+            <views:CurrencyConverterPage />
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>

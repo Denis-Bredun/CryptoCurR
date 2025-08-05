@@ -26,5 +26,7 @@ namespace CryptoCurR.Interfaces
             ObservableCollection<OhlcCandle>) MapFromDto(CoinDetailsLoadDto dto);
         (MarketChartData,
             ObservableCollection<OhlcCandle>) MapFromDto(CoinChartDataDto dto);
+
+        List<CurrencyConverterModel> MapToCurrencyConverterModels(List<CoinMarketModel> coinMarketModels);
     }
 }

@@ -4,19 +4,25 @@ using CryptoCurR.Models;
 
 namespace CryptoCurR.Services
 {
-    public class CurrencyConverterService(ICoinGeckoService coinGeckoService) : ICurrencyConverterService
+    public class CurrencyConverterService(
+        ICoinGeckoService coinGeckoService,
+        ICoinDetailsMapper coinDetailsMapper) : ICurrencyConverterService
     {
-        public async Task<List<CoinMarketModel>> LoadCurrenciesAsync()
+        public async Task<List<CurrencyConverterModel>> LoadCurrenciesAsync()
         {
             var coins = await coinGeckoService.GetTopCoinsAsync(perPage: 250);
-            return coins ?? new List<CoinMarketModel>();
+            return coinDetailsMapper.MapToCurrencyConverterModels(coins);
         }
 
         public async Task<decimal> ConvertCurrencyAsync(string fromId, string toId, string toSymbol, decimal amount)
         {
             var simplePrice = await coinGeckoService.GetSimplePriceAsync(fromId, toId, toSymbol);
-            var rate = simplePrice.Prices[fromId][toSymbol];
-            return amount * rate;
+
+            if (simplePrice == null || simplePrice[fromId].Count == 0)
+                return 0.0m;
+
+            var rate = simplePrice[fromId][toSymbol];
+            return Math.Round(amount * rate, 6);
         }
     }
 } 
